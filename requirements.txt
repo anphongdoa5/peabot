@@ -66,7 +66,6 @@ PySocks==1.7.1
 python-dotenv==0.17.1
 pyttsx3==2.88
 pytz==2020.1
-pywin32==227
 pywin32-ctypes==0.2.0
 requests==2.23.0
 rfc3986==1.4.0
