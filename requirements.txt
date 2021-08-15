@@ -58,7 +58,6 @@ pyinstaller-hooks-contrib==2021.1
 pyjsparser==2.7.1
 pylint==2.6.0
 PyNaCl==1.4.0
-pyowm==3.1.1
 pyparsing==2.4.7
 PyPrind==2.11.2
 pyrsistent==0.17.3
