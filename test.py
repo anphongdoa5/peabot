@@ -21,7 +21,7 @@ from discordTogether import DiscordTogether
 
 
 load_dotenv()
-TOKEN = os.getenv('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.KSBMAu3jYJKGQ6RcuctsER3GtkE')
+TOKEN = os.getenv('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.nmnLYo6UxLYkwsLfymvOt9Zq_D8')
 client = discord.Client()
 
 
@@ -341,5 +341,5 @@ async def on_message(message, url):
 
    
 #run
-client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.KSBMAu3jYJKGQ6RcuctsER3GtkE')
+client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.nmnLYo6UxLYkwsLfymvOt9Zq_D8')
       
