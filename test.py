@@ -51,7 +51,7 @@ async def on_message(message):
     if message.content == '?help':
         myembed = discord.Embed (title = 'Peanutss Bot', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
-        myembed.add_field (name = "💬 Tương Tác - (7)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `bonk`", inline=False)
+        myembed.add_field (name = "💬 Tương Tác - (9)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (4)", value = "`fbi` `daoli` `ongda` `haylam`", inline=False)
         myembed.add_field (name = "🎁 Media - (5)", value = "`meme` `darkmeme` `girl` `cat` `food`", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
