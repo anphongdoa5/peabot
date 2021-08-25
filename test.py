@@ -1,7 +1,7 @@
 # bot.py
 import os
 import random
-from typing import Any
+from typing import Any, Text
 import discord
 from discord import channel
 from discord import message
@@ -10,12 +10,15 @@ from discord import user
 from discord import member
 from dotenv import load_dotenv
 from datetime import datetime
+from dotenv.main import with_warn_for_invalid_lines
+import requests
 from youtube_dl import YoutubeDL
 from discord import FFmpegPCMAudio
 from discord.utils import get
 from discord.ext import commands
 import aiohttp
 from discordTogether import DiscordTogether
+import requests
 
 
 
@@ -48,9 +51,9 @@ async def on_message(message):
     if message.content == '?help':
         myembed = discord.Embed (title = 'Peanutss Bot', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
-        myembed.add_field (name = "💬 Tương Tác - (7)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` ", inline=False)
+        myembed.add_field (name = "💬 Tương Tác - (7)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (4)", value = "`fbi` `daoli` `ongda` `haylam`", inline=False)
-        myembed.add_field (name = "🎁 Media - (3)", value = "`meme` `darkmeme` `girl`", inline=False)
+        myembed.add_field (name = "🎁 Media - (5)", value = "`meme` `darkmeme` `girl` `cat` `food`", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
         myembed.add_field (name = "☎️ Contact - (2):", value = "`contact` `donate`", inline=False)
@@ -200,7 +203,7 @@ async def on_message(message):
         await message.channel.send(embed = contactembed)
 
 #prefix 17
-    if 'bonk' in message.content:
+    if message.content == '?bonk':
         response = 'https://media.discordapp.net/attachments/737129296816242759/854679699963379712/bonk.png?width=177&height=159'
         await message.channel.send(response)
 
@@ -258,14 +261,34 @@ async def on_message(message):
                 darkembed.set_footer(text=f"Đảk Mêm")
                 await message.channel.send(embed = darkembed)
 
-#prefix 24 
+#prefix 24
+    if message.content == '?cat':
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://www.reddit.com/r/cutecats.json") as r:
+                cats = await r.json()
+                catembed = discord.Embed(color = discord.Color.blue())
+                catembed.set_image(url=cats["data"]["children"][random.randint(0, 25)]["data"]["url"])
+                catembed.set_footer(text=f"Mèo méo meo mèo meo")
+                await message.channel.send(embed = catembed)
+
+#prefix 25
+    if message.content == '?food':
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://www.reddit.com/r/food.json") as r:
+                foods = await r.json()
+                foodsemmbed = discord.Embed(color = discord.Color.green())
+                foodsemmbed.set_image(url=foods["data"]["children"][random.randint(0, 25)]["data"]["url"])
+                foodsemmbed.set_footer(text=f'Mlem mlem')
+                await message.channel.send(embed = foodsemmbed)
+
+#prefix 26
     lines = open('list_girl.txt').read().splitlines()
     link = random.choice(lines)
 
     if message.content == '?girl':
         await message.channel.send(link)
 
-#prefix 25
+#prefix 27
     peabot_rep = [
         'Bắn CSGO cũng giống như đi từ thiện vậy, cái tâm phải đặt lên đầu',
         'Đặt câu hỏi là tốt nhưng cái gì cũng hỏi thì không',
@@ -279,14 +302,14 @@ async def on_message(message):
     if message.content == '?daoli':
         await message.channel.send(response)
 
-#prefix 26
+#prefix 28
     if message.content == '?donate':    
         donateembed = discord.Embed (title = 'Playerduo Link:', color = discord.Color.orange())
         donateembed.set_author (name = "Donate ủng hộ Dev ly cà phê tại đây:")
         donateembed.add_field (name = "https://playerduo.com/peanutss", value = "Cảm ơn bạn rất nhiều <3", inline=False)
         await message.channel.send(embed = donateembed)
 
-#prefix 27
+#prefix 29
     togetherControl = DiscordTogether(client)
     if message.content == '?youtube':
         if (message.author.voice):   #kiểm tra người trong voice 
@@ -300,8 +323,17 @@ async def on_message(message):
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
 
-
-
+#prefix 30
+    if message.content == '?coronavn':
+        url = 'http://coronavirus-19-api.herokuapp.com/countries/vietnam'
+        response = requests.get(url)
+        data = response.json()
+        cases = data['cases']
+        deaths = data['deaths']
+        recovered = data['recovered']
+        peabot_rep = f"TÌNH HÌNH COVID 19 TẠI VIỆT NAM:\n☣  Số Người Nhiễm: {cases} người\n💀  Số Người Tử Vong: {deaths} người\n✅  Số Người Bình Phục: {recovered} người"
+        await message.channel.send(peabot_rep)
+                 
 #voice activitive modules 
 #join voice channel
     if message.content == '?connect' or message.content == '?join':   #prefix
@@ -342,4 +374,5 @@ async def on_message(message, url):
    
 #run
 client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.ctgWTQS01WTTQr7ZmuTt8WHWvB4')
+      
       
