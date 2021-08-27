@@ -13,7 +13,6 @@ from datetime import datetime
 from dotenv.main import with_warn_for_invalid_lines
 import requests
 from youtube_dl import YoutubeDL
-from discord import FFmpegPCMAudio
 from discord.utils import get
 from discord.ext import commands
 import aiohttp
@@ -53,8 +52,9 @@ async def on_message(message):
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (9)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (4)", value = "`fbi` `daoli` `ongda` `haylam`", inline=False)
-        myembed.add_field (name = "🎁 Media - (5)", value = "`meme` `darkmeme` `girl` `cat` `food`", inline=False)
+        myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu`", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
+        myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
         myembed.add_field (name = "☎️ Contact - (2):", value = "`contact` `donate`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
@@ -171,7 +171,7 @@ async def on_message(message):
     if message.content == '?time':
 
         now = datetime.now()
-        peabot_rep = now.strftime('%H Hours %M Minutes %S Seconds') #lib time
+        peabot_rep = now.strftime('%I Hours %M Minutes %S Seconds') #lib time
 
 
         response = 'Bây giờ là: ' + str(peabot_rep)
@@ -270,25 +270,62 @@ async def on_message(message):
                 catembed.set_image(url=cats["data"]["children"][random.randint(0, 25)]["data"]["url"])
                 catembed.set_footer(text=f"Mèo méo meo mèo meo")
                 await message.channel.send(embed = catembed)
-
 #prefix 25
+    if message.content == '?dog':
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://dog.ceo/api/breeds/image/random") as r:
+                dogs = await r.json()
+                dogsembed = discord.Embed(color = discord.Color.gold())
+                dogsembed.set_image(url=dogs["message"])
+                dogsembed.set_footer(text=f"Cute Dogs :3")
+                await message.channel.send(embed = dogsembed)      
+
+#prefix 26
     if message.content == '?food':
         async with aiohttp.ClientSession() as cs:
-            async with cs.get("https://www.reddit.com/r/food.json") as r:
+            async with cs.get("https://www.reddit.com/r/food/new.json?sort=hot") as r:
                 foods = await r.json()
                 foodsemmbed = discord.Embed(color = discord.Color.green())
                 foodsemmbed.set_image(url=foods["data"]["children"][random.randint(0, 25)]["data"]["url"])
                 foodsemmbed.set_footer(text=f'Mlem mlem')
                 await message.channel.send(embed = foodsemmbed)
+#prefix 27
+    if message.content == '?waifu':
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/waifu") as r:
+                waifu = await r.json()
+                waifuembed = discord.Embed(color = discord.Color.dark_orange())
+                waifuembed.set_image(url=waifu["url"])
+                waifuembed.set_footer(text=f"Who is your waifu? ❤️")
+                await message.channel.send(embed = waifuembed)
 
-#prefix 26
+#prefix 28
+    if message.content == '?hentai':
+        if message.channel.is_nsfw():
+            list = ['waifu', 'neko', 'blowjob' ]
+            choice = random.choice(list)
+            link = "https://api.waifu.pics/nsfw/"
+            fullurl = link + choice 
+            async with aiohttp.ClientSession() as cs:
+                async with cs.get(fullurl) as r:
+                    nsfw = await r.json()
+                    nsfwembed = discord.Embed(color = discord.Color.dark_red())
+                    nsfwembed.set_image(url=nsfw["url"])
+                    nsfwembed.set_footer(text=f"⚠️| Not Safe For Work!!")
+                    await message.channel.send(embed = nsfwembed)
+        else:
+            await message.channel.send("❗| Lệnh chỉ dùng được trong phòng NSFW !!")        
+
+
+        
+#prefix 29
     lines = open('list_girl.txt').read().splitlines()
     link = random.choice(lines)
 
     if message.content == '?girl':
         await message.channel.send(link)
 
-#prefix 27
+#prefix 30
     peabot_rep = [
         'Bắn CSGO cũng giống như đi từ thiện vậy, cái tâm phải đặt lên đầu',
         'Đặt câu hỏi là tốt nhưng cái gì cũng hỏi thì không',
@@ -302,14 +339,14 @@ async def on_message(message):
     if message.content == '?daoli':
         await message.channel.send(response)
 
-#prefix 28
+#prefix 31
     if message.content == '?donate':    
         donateembed = discord.Embed (title = 'Playerduo Link:', color = discord.Color.orange())
         donateembed.set_author (name = "Donate ủng hộ Dev ly cà phê tại đây:")
         donateembed.add_field (name = "https://playerduo.com/peanutss", value = "Cảm ơn bạn rất nhiều <3", inline=False)
         await message.channel.send(embed = donateembed)
 
-#prefix 29
+#prefix 32
     togetherControl = DiscordTogether(client)
     if message.content == '?youtube':
         if (message.author.voice):   #kiểm tra người trong voice 
@@ -323,7 +360,7 @@ async def on_message(message):
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
 
-#prefix 30
+#prefix 33
     if message.content == '?coronavn':
         url = 'http://coronavirus-19-api.herokuapp.com/countries/vietnam'
         response = requests.get(url)
@@ -353,26 +390,8 @@ async def on_message(message):
             await message.channel.send('❌| Bạn phải ở trong kênh voice thì mình mới ra được chứ ^^')
 
 
-#mở nhạc bằng link youtube 
-async def on_message(message, url):
-
-    if '?play' in message.content:
-
-            YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-            FFMPEG_OPTIONS = {
-                'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-            voice = get(client.voice_clients, guild=message.guild)
-
-            if not voice.is_playing():
-                with YoutubeDL(YDL_OPTIONS) as ydl:
-                    info = ydl.extract_info(url, download=False)
-                URL = info['url']
-                voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-                voice.is_playing()
-                await message.channel.send('Đang mở nhạc...')
 
    
 #run
 client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.ctgWTQS01WTTQr7ZmuTt8WHWvB4')
-      
       
