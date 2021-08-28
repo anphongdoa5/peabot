@@ -372,7 +372,7 @@ async def on_message(message):
         await message.channel.send(peabot_rep)
     
 #prefix 34
-    if message.content == '?invite'
+    if message.content == '?invite':
         inviteembed = discord.Embed (color = discord.Color.green())
         inviteembed.set_author (name = "Link Invite Peanutss Bot")
         inviteembed.add_field (name = "Link:", value = 'https://discord.com/oauth2/authorize?client_id=728462830407254088&permissions=34631477334&scope=bot', inline=False)
