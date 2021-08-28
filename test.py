@@ -56,7 +56,7 @@ async def on_message(message):
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
-        myembed.add_field (name = "☎️ Contact - (2):", value = "`contact` `donate`", inline=False)
+        myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
 
         await message.channel.send(embed = myembed)
@@ -370,7 +370,14 @@ async def on_message(message):
         recovered = data['recovered']
         peabot_rep = f"TÌNH HÌNH COVID 19 TẠI VIỆT NAM:\n☣  Số Người Nhiễm: {cases} người\n💀  Số Người Tử Vong: {deaths} người\n✅  Số Người Bình Phục: {recovered} người"
         await message.channel.send(peabot_rep)
-                 
+    
+#prefix 34
+    if message.content == '?invite'
+        inviteembed = discord.Embed (color = discord.Color.green())
+        inviteembed.set_author (name = "Link Invite Peanutss Bot")
+        inviteembed.add_field (name = "Link:", value = 'https://discord.com/oauth2/authorize?client_id=728462830407254088&permissions=34631477334&scope=bot', inline=False)
+        await message.channel.send(embed = inviteembed)
+        
 #voice activitive modules 
 #join voice channel
     if message.content == '?connect' or message.content == '?join':   #prefix
