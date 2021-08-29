@@ -270,7 +270,7 @@ async def on_message(message):
             async with cs.get("https://api.thecatapi.com/v1/images/search") as r:
                 cats = await r.json()
                 catembed = discord.Embed(color = discord.Color.blue())
-                catembed.set_image(url= cats["url"])
+                catembed.set_image(url=cats["url"])
                 catembed.set_footer(text=f"Mèo méo meo mèo meo")
                 await message.channel.send(embed = catembed)
 #prefix 25
