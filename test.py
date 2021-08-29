@@ -59,7 +59,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = "```Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite```"
+        updated = f"```Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite\n Lệnh cat đang lỗi, sẽ được fix sớm```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
