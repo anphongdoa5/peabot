@@ -58,9 +58,12 @@ async def on_message(message):
         myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
-
+        
+        updated = "```Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite```"
+        
         await message.channel.send(embed = myembed)
-   
+        await message.channel.send(updated)
+        
     if message.author == client.user: 
         return
 
