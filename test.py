@@ -50,7 +50,7 @@ async def on_message(message):
     if message.content == '?help':
         myembed = discord.Embed (title = 'Peanutss Bot', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
-        myembed.add_field (name = "💬 Tương Tác - (9)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `bonk`", inline=False)
+        myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (4)", value = "`fbi` `daoli` `ongda` `haylam`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu`", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
@@ -370,8 +370,21 @@ async def on_message(message):
         recovered = data['recovered']
         peabot_rep = f"TÌNH HÌNH COVID 19 TẠI VIỆT NAM:\n☣  Số Người Nhiễm: {cases} người\n💀  Số Người Tử Vong: {deaths} người\n✅  Số Người Bình Phục: {recovered} người"
         await message.channel.send(peabot_rep)
-    
+        
+        
 #prefix 34
+    if message.content == '?corona':
+        url = 'http://coronavirus-19-api.herokuapp.com/countries/world'
+        response = requests.get(url)
+        data = response.json()
+        cases = data['cases']
+        deaths = data['deaths']
+        recovered = data['recovered']
+        peabot_rep = f"TÌNH HÌNH COVID 19 TRÊN THẾ GIỚI:\n☣  Số Người Nhiễm: {cases} người\n💀  Số Người Tử Vong: {deaths} người\n✅  Số Người Bình Phục: {recovered} người"
+        await message.channel.send(peabot_rep)
+        
+        
+#prefix 35
     if message.content == '?invite':
         inviteembed = discord.Embed (color = discord.Color.green())
         inviteembed.set_author (name = "Link Invite Peanutss Bot")
