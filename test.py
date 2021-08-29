@@ -267,10 +267,10 @@ async def on_message(message):
 #prefix 24
     if message.content == '?cat':
         async with aiohttp.ClientSession() as cs:
-            async with cs.get("https://www.reddit.com/r/cutecats.json") as r:
+            async with cs.get("https://api.thecatapi.com/v1/images/search") as r:
                 cats = await r.json()
                 catembed = discord.Embed(color = discord.Color.blue())
-                catembed.set_image(url=cats["data"]["children"][random.randint(0, 25)]["data"]["url"])
+                catembed.set_image(url= cats["url"])
                 catembed.set_footer(text=f"Mèo méo meo mèo meo")
                 await message.channel.send(embed = catembed)
 #prefix 25
