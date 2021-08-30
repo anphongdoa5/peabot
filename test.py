@@ -17,7 +17,6 @@ from discord.utils import get
 from discord.ext import commands
 import aiohttp
 from discordTogether import DiscordTogether
-import requests
 
 
 
@@ -59,7 +58,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite\n- Lệnh cat đang bị lỗi, sẽ được fix sớm```"
+        updated = f"```- Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite\n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -267,12 +266,19 @@ async def on_message(message):
 #prefix 24
     if message.content == '?cat':
         async with aiohttp.ClientSession() as cs:
+            #api đuồi bầu gắn url trong 1 list, phải tách bằng 1 int chứ không thể tách như thường
             async with cs.get("https://api.thecatapi.com/v1/images/search") as r:
                 cats = await r.json()
+
+                catch = cats[0] #trả về dãy như api thường (mất [])
+                catlink = catch['url'] #tách data như thường
+
                 catembed = discord.Embed(color = discord.Color.blue())
-                catembed.set_image(url=cats["url"])
+                catembed.set_image(url=catlink)
                 catembed.set_footer(text=f"Mèo méo meo mèo meo")
                 await message.channel.send(embed = catembed)
+
+
 #prefix 25
     if message.content == '?dog':
         async with aiohttp.ClientSession() as cs:
@@ -288,10 +294,10 @@ async def on_message(message):
         async with aiohttp.ClientSession() as cs:
             async with cs.get("https://www.reddit.com/r/food/new.json?sort=hot") as r:
                 foods = await r.json()
-                foodsemmbed = discord.Embed(color = discord.Color.green())
-                foodsemmbed.set_image(url=foods["data"]["children"][random.randint(0, 25)]["data"]["url"])
-                foodsemmbed.set_footer(text=f'Mlem mlem')
-                await message.channel.send(embed = foodsemmbed)
+                foodsembed = discord.Embed(color = discord.Color.green())
+                foodsembed.set_image(url=foods["data"]["children"][random.randint(0, 25)]["data"]["url"])
+                foodsembed.set_footer(text=f'Mlem mlem')
+                await message.channel.send(embed = foodsembed)
 #prefix 27
     if message.content == '?waifu':
         async with aiohttp.ClientSession() as cs:
@@ -305,7 +311,7 @@ async def on_message(message):
 #prefix 28
     if message.content == '?hentai':
         if message.channel.is_nsfw():
-            list = ['waifu', 'neko', 'blowjob' ]
+            list = ['waifu', 'neko', 'blowjob']
             choice = random.choice(list)
             link = "https://api.waifu.pics/nsfw/"
             fullurl = link + choice 
@@ -326,7 +332,10 @@ async def on_message(message):
     link = random.choice(lines)
 
     if message.content == '?girl':
-        await message.channel.send(link)
+        girlembed = discord.Embed(color = discord.Color.from_rgb(255,105,180))
+        girlembed.set_image(url=link)
+        girlembed.set_footer(text=f"Mỗi bức ảnh, một niềm vui ❤️")
+        await message.channel.send(embed = girlembed)
 
 #prefix 30
     peabot_rep = [
@@ -365,8 +374,7 @@ async def on_message(message):
 
 #prefix 33
     if message.content == '?coronavn':
-        url = 'http://coronavirus-19-api.herokuapp.com/countries/vietnam'
-        response = requests.get(url)
+        response = requests.get('http://coronavirus-19-api.herokuapp.com/countries/vietnam')
         data = response.json()
         cases = data['cases']
         deaths = data['deaths']
@@ -377,9 +385,9 @@ async def on_message(message):
         
 #prefix 34
     if message.content == '?corona':
-        url = 'http://coronavirus-19-api.herokuapp.com/countries/world'
-        response = requests.get(url)
+        response = requests.get('http://coronavirus-19-api.herokuapp.com/countries/world')
         data = response.json()
+
         cases = data['cases']
         deaths = data['deaths']
         recovered = data['recovered']
