@@ -50,15 +50,15 @@ async def on_message(message):
         myembed = discord.Embed (title = 'Peanutss Bot', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
-        myembed.add_field (name = "😊 Fun - (4)", value = "`fbi` `daoli` `ongda` `haylam`", inline=False)
-        myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu`", inline=False)
+        myembed.add_field (name = "😊 Fun - (10)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive`", inline=False)
+        myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: coronavn, corona, dog, food, waifu, hentai, invite\n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -402,6 +402,61 @@ async def on_message(message):
         inviteembed.add_field (name = "Link:", value = 'https://discord.com/oauth2/authorize?client_id=728462830407254088&permissions=34631477334&scope=bot', inline=False)
         await message.channel.send(embed = inviteembed)
         
+#prefix 36 (chùm lệnh tương tác) 6 lệnh
+    if '?hug' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/hug") as r:
+                hug = await r.json()
+                hugembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                hugembed.set_image(url=hug["url"])
+                hugembed.set_footer(text=f"Ôm ... ❤️")
+                await message.channel.send(embed = hugembed)
+
+    if '?cry' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/cry") as r:
+                cry = await r.json()
+                cryembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                cryembed.set_image(url=cry["url"])
+                cryembed.set_footer(text=f"Cry :((")
+                await message.channel.send(embed = cryembed)
+
+    if '?kiss' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/kiss") as r:
+                kiss = await r.json()
+                kissembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                kissembed.set_image(url=kiss["url"])
+                kissmbed.set_footer(text=f".... ❤️")
+                await message.channel.send(embed = kissembed)
+
+    if '?smile' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/simle") as r:
+                smile = await r.json()
+                smileembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                smileembed.set_image(url=smile["url"])
+                await message.channel.send(embed = smileembed)
+
+    if '?highfive' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/highfive") as r:
+                highfive = await r.json()
+                hfembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                hfembed.set_image(url=highfive["url"])
+                hfembed.set_footer(text=f"Highfive :D")
+                await message.channel.send(embed = hfembed)
+
+    if '?kill' in message.content:
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get("https://api.waifu.pics/sfw/kill") as r:
+                kill = await r.json()
+                killembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
+                killembed.set_image(url=kill["url"])
+                killembed.set_footer(text=f"Cho mày chết ....")
+                await message.channel.send(embed = killembed)
+
+
 #voice activitive modules 
 #join voice channel
     if message.content == '?connect' or message.content == '?join':   #prefix
