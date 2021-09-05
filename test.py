@@ -427,12 +427,12 @@ async def on_message(message):
                 kiss = await r.json()
                 kissembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
                 kissembed.set_image(url=kiss["url"])
-                kissmbed.set_footer(text=f".... ❤️")
+                kissembed.set_footer(text=f".... ❤️")
                 await message.channel.send(embed = kissembed)
 
     if '?smile' in message.content:
         async with aiohttp.ClientSession() as cs:
-            async with cs.get("https://api.waifu.pics/sfw/simle") as r:
+            async with cs.get("https://api.waifu.pics/sfw/smile") as r:
                 smile = await r.json()
                 smileembed = discord.Embed(color = discord.Color.from_rgb(127,255,212))
                 smileembed.set_image(url=smile["url"])
