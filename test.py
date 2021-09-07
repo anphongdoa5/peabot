@@ -58,7 +58,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive, status, avatarsv \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -455,6 +455,30 @@ async def on_message(message):
                 killembed.set_image(url=kill["url"])
                 killembed.set_footer(text=f"Cho mày chết ....")
                 await message.channel.send(embed = killembed)
+                
+#prefix 37
+    if message.content == '?status':
+        statembed = discord.Embed(title=f'Thông tin server {message.guild.name} ',description= '', color = discord.Color.from_rgb(147,112,219))
+        statembed.set_thumbnail(url=f'{message.guild.icon_url}')
+
+        statembed.add_field(name='Tên Server:', value=f'{message.guild.name}', inline=True)
+        statembed.add_field(name='Số Lượng Thành Viên:', value=f'{message.guild.member_count} thành viên', inline=True)
+        statembed.add_field(name='Vị Trí Server:', value=f'{message.guild.region}', inline=True)
+        statembed.add_field(name='Server Tạo Lúc:', value=f'{message.guild.created_at.strftime("%#d %B %Y, %H:%M")}')
+
+        statembed.add_field(name='Trạng Thái Bot:', value='🟢 Online!!', inline = True)
+        statembed.add_field(name='Latency:', value=f'Độ trễ bot: {round(client.latency * 1000)}ms', inline=True)
+        statembed.set_footer(text=f'Bởi: {message.author}!', icon_url = f'{message.author.avatar_url}')
+
+        await message.channel.send(embed = statembed)
+
+
+#prefix 38
+    if message.content == '?avatarsv':
+        avaembed = discord.Embed(title=f'Avatar của server {message.guild.name}', description='', color = discord.Color.from_rgb(0,201,87))
+        avaembed.set_image(url=f'{message.guild.icon_url}')
+        avaembed.set_footer(text=f'Bởi: {message.author}!', icon_url = f'{message.author.avatar_url}')
+        await message.channel.send(embed = avaembed)
 
 
 #voice activitive modules 
