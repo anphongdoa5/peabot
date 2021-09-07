@@ -54,7 +54,7 @@ async def on_message(message):
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
         myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
-        myembed.add_field (name = "⚙️ Guilds - (2)", value = "`ping` `help`", inline=False)
+        myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `status` `avatarsv`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
