@@ -47,7 +47,7 @@ async def on_member_join(member):
 async def on_message(message):
 #help prefix    
     if message.content == '?help':
-        myembed = discord.Embed (title = 'Peanutss Bot', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
+        myembed = discord.Embed (title = 'Peanutss Bot (v1.7)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (10)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive`", inline=False)
