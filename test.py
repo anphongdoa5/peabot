@@ -52,13 +52,13 @@ async def on_message(message):
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (10)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
-        myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play` `chess` `poker` `fishing`", inline=False)
+        myembed.add_field (name = "📺 Giải trí - (7)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `status` `avatarsv`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive, status, avatarsv, chess, fishing, poker \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update (BigUpdate): hug, cry, smile, kill, kiss, highfive, status, avatarsv, chess, fishing, poker \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
