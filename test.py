@@ -52,13 +52,13 @@ async def on_message(message):
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (10)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
-        myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play`", inline=False)
+        myembed.add_field (name = "📺 Giải trí - (4)", value = "`youtube` `join, connect` `leave, disconnect` `play` `chess` `poker` `fishing`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `status` `avatarsv`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive, status, avatarsv \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update: hug, cry, smile, kill, kiss, highfive, status, avatarsv, chess, fishing, poker \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -479,7 +479,46 @@ async def on_message(message):
         avaembed.set_image(url=f'{message.guild.icon_url}')
         avaembed.set_footer(text=f'Bởi: {message.author}!', icon_url = f'{message.author.avatar_url}')
         await message.channel.send(embed = avaembed)
+    togetherControl = DiscordTogether(client)
 
+#prefix 39
+    if message.content == '?chess':
+        if (message.author.voice):   #kiểm tra người trong voice 
+            voice = message.author.voice.channel
+
+            #tạo url youtube together
+            link = await togetherControl.create_link(message.author.voice.channel.id, 'chess')
+            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
+            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
+
+        else:
+            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
+         
+#prefix 40
+    if message.content == '?fishing':
+        if (message.author.voice):   #kiểm tra người trong voice 
+            voice = message.author.voice.channel
+
+            #tạo url youtube together
+            link = await togetherControl.create_link(message.author.voice.channel.id, 'fishing')
+            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
+            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
+
+        else:
+            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
+            
+#prefix 41
+    if message.content == '?poker':
+        if (message.author.voice):   #kiểm tra người trong voice 
+            voice = message.author.voice.channel
+
+            #tạo url youtube together
+            link = await togetherControl.create_link(message.author.voice.channel.id, 'poker')
+            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
+            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
+
+        else:
+            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
 
 #voice activitive modules 
 #join voice channel
