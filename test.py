@@ -47,14 +47,14 @@ async def on_member_join(member):
 async def on_message(message):
 #help prefix    
     if message.content == '?help':
-        myembed = discord.Embed (title = 'Peanutss Bot (v1.7)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
+        myembed = discord.Embed (title = 'Peanutss Bot (v1.8)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (10)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
         myembed.add_field (name = "📺 Giải trí - (7)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
-        myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `status` `avatarsv`", inline=False)
+        myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `status` `avatarsv` `botserver`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
@@ -519,7 +519,10 @@ async def on_message(message):
 
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
-
+#prefix 41
+    if message.content == '?botserver':
+      await message.channel.send(f'Bot đang ở {str(len(client.guilds))} server!!')
+    
 #voice activitive modules 
 #join voice channel
     if message.content == '?connect' or message.content == '?join':   #prefix
