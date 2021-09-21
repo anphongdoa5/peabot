@@ -201,7 +201,8 @@ async def on_message(message):
         contactembed.add_field (name = "Discord Account ^^:", value = 'Peanuts Is Me (Andy)#1703', inline=False)
         contactembed.add_field (name = "Link Facebook ^^:", value = 'https://facebook.com/yt.andymusic', inline=False)
         contactembed.add_field (name = "Link Youtube ^^:", value = 'https://youtube.com/c/andymusicc', inline=False)
-        contactembed.add_field (name = " Support Discord Server:", value = 'https://discord.gg/5t85FB4Dsc', inline=False)
+        contactembed.add_field (name = "Support Discord Server:", value = 'https://discord.gg/5t85FB4Dsc', inline=False)
+        contactembed.add_field (name = "Github:", value = 'https://github.com/anphongdoa5', inline=False)
         await message.channel.send(embed = contactembed)
 
 #prefix 17
