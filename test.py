@@ -539,6 +539,13 @@ async def on_message(message):
 #prefix 41
     if message.content == '?botserver':
       await message.channel.send(f'Bot đang ở {str(len(client.guilds))} server!!')
+
+#prefix 42
+    if message.content == '?allserver':
+        activeservers = client.guilds
+        for guild in activeservers:
+            await message.channel.send(guild.name)
+            
     
 #voice activitive modules 
 #join voice channel
