@@ -569,5 +569,5 @@ async def on_message(message):
 
    
 #run
-client.run('TOKEN')
+client.run(TOKEN)
       
