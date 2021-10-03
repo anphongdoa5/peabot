@@ -22,7 +22,7 @@ from discordTogether import DiscordTogether
 
 
 load_dotenv()
-TOKEN = os.getenv('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.ctgWTQS01WTTQr7ZmuTt8WHWvB4')
+TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
 
@@ -569,5 +569,5 @@ async def on_message(message):
 
    
 #run
-client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.ctgWTQS01WTTQr7ZmuTt8WHWvB4')
+client.run('TOKEN')
       
