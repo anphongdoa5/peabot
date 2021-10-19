@@ -564,7 +564,12 @@ async def on_message(message):
             await message.guild.voice_client.disconnect() 
         else:
             await message.channel.send('❌| Bạn phải ở trong kênh voice thì mình mới ra được chứ ^^')
-
+            
+ #dành cho thằng hotboykeokoe
+    if message.content == '?hotboykeokoe':
+        keoembed = discord.Embed(title = 'Hotboykeokoe', color = discord.Color.red())
+        keoembed.set_footer(url='https://media.discordapp.net/attachments/892723707649339412/900044839217930300/Miles_Selfie.png?width=125&height=144')
+        message.channel.send(embed = keoembed)
 
 
    
