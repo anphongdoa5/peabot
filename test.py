@@ -567,9 +567,9 @@ async def on_message(message):
             
  #dành cho thằng hotboykeokoe
     if message.content == '?hotboykeokoe':
-        keoembed = discord.Embed(title = 'Hotboykeokoe', color = discord.Color.red())
+        keoembed = discord.Embed(color = discord.Color.red())
         keoembed.set_image(url='https://media.discordapp.net/attachments/892723707649339412/900044839217930300/Miles_Selfie.png?width=125&height=144')
-        message.channel.send(embed = keoembed)
+        await message.channel.send(embed = keoembed)
 
 
    
