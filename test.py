@@ -347,6 +347,11 @@ async def on_message(message):
         'Nam tử hán đại trượng phu, đánh nhau không lại ||bú cu|| giảng hòa',
         'Tôi có thằng em sinh năm 96 học Bách Khoa Cơ Khí tay ngang sang học IT...',
         'Hảo hánnnn'     
+        'Bao lâu thì bán được 1 tỉ gói mè? Trả lời?'
+        'Học đếm: 1 - Ngô Diệc Phàm - 3 - 4 - 5 - 6 - 7...'
+        'Bạn không có một chút văn hoá nào, bạn không có một chút đạo đức nào. Tại sao bạn lại dùng lệnh này?? Bạn không đủ tư cách để nói chuyện với tôi'
+        'Xin là xin vĩnh biệt cụ'
+        'Thế bạn nói xem vì sao mình phải trả lời bạn - Peanutss Chen'
     ]
     response = random.choice(peabot_rep)
     if message.content == '?daoli':
