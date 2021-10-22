@@ -578,9 +578,7 @@ async def on_message(message):
         
  #prefix 43
     if message.content == '?gianghoa':
-        await message.channel.send('
-        https://images-ext-2.discordapp.net/external/Nv-nYhl8A0vhAqtktbwujG61vGqL1Lz1nuO2NA7rN5w/https/media.discordapp.net/attachments/781481778795118612/895984488906100736/gianghoa.gif?width=351&height=45
-        ')
+        await message.channel.send('https://images-ext-2.discordapp.net/external/Nv-nYhl8A0vhAqtktbwujG61vGqL1Lz1nuO2NA7rN5w/https/media.discordapp.net/attachments/781481778795118612/895984488906100736/gianghoa.gif?width=351&height=45')
 
    
 #run
