@@ -580,7 +580,15 @@ async def on_message(message):
     if message.content == '?gianghoa':
         await message.channel.send('https://images-ext-2.discordapp.net/external/Nv-nYhl8A0vhAqtktbwujG61vGqL1Lz1nuO2NA7rN5w/https/media.discordapp.net/attachments/781481778795118612/895984488906100736/gianghoa.gif?width=351&height=45')
 
-   
+#prefix 44
+    if message.content == 'bitcoin':
+        api = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        data = api.json()
+        type = data["bpi"]
+        dv = data["USD"]
+        price = data["rate"]
+        await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price))
+
 #run
 client.run(TOKEN)
       
