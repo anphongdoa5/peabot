@@ -575,7 +575,12 @@ async def on_message(message):
         keoembed = discord.Embed(title = 'Ai là thằng thiểu năng nào?',color = discord.Color.red())
         keoembed.set_image(url='https://media.discordapp.net/attachments/892723707649339412/900044839217930300/Miles_Selfie.png?width=125&height=144')
         await message.channel.send(embed = keoembed)
-
+        
+ #prefix 43
+    if message.content == '?gianghoa':
+        await message.channel.send('
+        https://images-ext-2.discordapp.net/external/Nv-nYhl8A0vhAqtktbwujG61vGqL1Lz1nuO2NA7rN5w/https/media.discordapp.net/attachments/781481778795118612/895984488906100736/gianghoa.gif?width=351&height=45
+        ')
 
    
 #run
