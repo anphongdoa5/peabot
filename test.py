@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 from datetime import datetime
 from dotenv.main import with_warn_for_invalid_lines
 import requests
-from youtube_dl import YoutubeDL
 from discord.utils import get
 from discord.ext import commands
 import aiohttp
