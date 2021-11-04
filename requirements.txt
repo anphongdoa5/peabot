@@ -1,5 +1,5 @@
 aenum==2.2.4
-aiohttp==3.6.2
+aiohttp==3.7.2
 altgraph==0.17
 astroid==2.4.2
 async-timeout==3.0.1
@@ -17,7 +17,7 @@ comtypes==1.1.7
 covid19-data==1.2.0
 DateTime==4.3
 discord==1.0.1
-discord-together==1.1.1
+discord-together==1.2.1
 discord.py==1.7.2
 docopt==0.6.2
 fbchat==1.9.7
@@ -39,13 +39,9 @@ isort==5.7.0
 itsdangerous==2.0.1
 Jinja2==3.0.1
 Js2Py==0.70
-lavalink==3.1.2
 lazy-object-proxy==1.4.3
 MarkupSafe==2.0.1
 mccabe==0.6.1
-multidict==4.7.6
-oauthlib==3.1.0
-p==0.0.0
 packaging==20.4
 paho-mqtt==1.5.1
 password==0.2
@@ -87,7 +83,5 @@ Werkzeug==2.0.1
 wikipedia==1.4.0
 wrapt==1.12.1
 yarl==1.4.2
-youtube-dl==2020.9.20
-youtube-search==1.1.0
 zipp==3.3.0
 zope.interface==5.1.2
