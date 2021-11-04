@@ -15,8 +15,7 @@ import requests
 from discord.utils import get
 from discord.ext import commands
 import aiohttp
-from discordTogether import DiscordTogether
-
+from discord_together import DiscordTogether
 
 
 
