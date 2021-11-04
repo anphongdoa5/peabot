@@ -369,7 +369,7 @@ async def on_message(message):
             voice = message.author.voice.channel
 
             #tạo url youtube together
-            link = await togetherControl.create_link(message.author.voice.channel.id, 'youtube')
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'youtube')
             await message.channel.send(f'Nhấn vào link để xem Youtube: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
             
@@ -491,7 +491,7 @@ async def on_message(message):
             voice = message.author.voice.channel
 
             #tạo url youtube together
-            link = await togetherControl.create_link(message.author.voice.channel.id, 'chess')
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'chess')
             await message.channel.send(f'Nhấn vào link để chơi: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
 
@@ -504,7 +504,7 @@ async def on_message(message):
             voice = message.author.voice.channel
 
             #tạo url youtube together
-            link = await togetherControl.create_link(message.author.voice.channel.id, 'fishing')
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'fishing')
             await message.channel.send(f'Nhấn vào link để chơi: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
 
@@ -517,7 +517,7 @@ async def on_message(message):
             voice = message.author.voice.channel
 
             #tạo url youtube together
-            link = await togetherControl.create_link(message.author.voice.channel.id, 'poker')
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'poker')
             await message.channel.send(f'Nhấn vào link để chơi: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
 
@@ -532,7 +532,7 @@ async def on_message(message):
             voice = message.author.voice.channel
 
             #tạo url youtube together
-            link = await togetherControl.create_link(message.author.voice.channel.id, 'betrayal')
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'betrayal')
             await message.channel.send(f'Nhấn vào link để chơi: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
 
