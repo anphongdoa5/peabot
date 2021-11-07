@@ -27,6 +27,7 @@ client = discord.Client()
 #connecting
 @client.event
 async def on_ready():
+    client.togetherControl = await DiscordTogether(TOKEN)
     print(f'{client.user.name} has connected to Discord!')
 
 #set status 
@@ -56,7 +57,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update (BigUpdate): bitcoin, status, avatarsv, chess, fishing, poker, betrayal, gianghoa \n- Lệnh cat đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update (BigUpdate): bitcoin, status, avatarsv, chess, fishing, poker, betrayal, gianghoa \n- Lệnh youtube đã fix và hoạt động lại bình thường!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -363,7 +364,6 @@ async def on_message(message):
         await message.channel.send(embed = donateembed)
 
 #prefix 32
-    togetherControl = DiscordTogether(client)
     if message.content == '?youtube':
         if (message.author.voice):   #kiểm tra người trong voice 
             voice = message.author.voice.channel
