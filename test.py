@@ -588,7 +588,7 @@ async def on_message(message):
 
 #cho kiệt
     if "kiệt" in message.content:
-        await message.channel.send("Kiệt gà, Kiệt non, kiệt simp, Kiệt chiếu mới, Kiệt lần đầu có người yêu lmao lmao dảk dảk bủh bủh")
+        await message.channel.send("Đây là <@!821655296077725736 >: Kiệt gà, Kiệt non, Kiệt simp chúa, Kiệt chiếu mới, Kiệt lần đầu có người yêu lmao lmao dảk dảk bủh bủh")
 
 #run
 client.run(TOKEN)
