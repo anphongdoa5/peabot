@@ -586,10 +586,6 @@ async def on_message(message):
      
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
 
-#cho kiệt
-    if "kiệt" in message.content:
-        await message.channel.send("Đây là <@!821655296077725736> : Kiệt gà, Kiệt non, Kiệt simp chúa, Kiệt chiếu mới, Kiệt lần đầu có người yêu lmao lmao dảk dảk bủh bủh")
-
 #run
 client.run(TOKEN)
       
