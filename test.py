@@ -585,6 +585,11 @@ async def on_message(message):
         price = data["bpi"]["USD"]["rate"]
      
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
+  
+#chuc mung sinh nhat will
+    if message.content == '?hbbdwill':
+        for 1 in range(10):
+            await message.channel.send("Chúc mừng sinh nhật <@605232428394610709>")
 
 #run
 client.run(TOKEN)
