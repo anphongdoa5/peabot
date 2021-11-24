@@ -587,11 +587,14 @@ async def on_message(message):
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
   
 #chuc mung sinh nhat will
-    if message.content == '?hpbdwill':
+    if message.content == '?spamwill':
         i = 1
-        for i in range(10):
+        while True:
+            i = i + 1
             await message.channel.send("Chúc mừng sinh nhật <@605232428394610709>")
-
+            if i == 10:
+                break:
+                await message.channel.send("Đã chúc đủ 10000 lời chúc")
 #run
 client.run(TOKEN)
       
