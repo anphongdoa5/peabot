@@ -588,11 +588,11 @@ async def on_message(message):
   
 #chuc mung sinh nhat will
     if message.content == '?spamwill':
-        i = 1
+        i = 0
         while True:
             i = i + 1
-            await message.channel.send("Chúc mừng sinh nhật <@605232428394610709>")
-            if i == 50001:
+            await message.channel.send(str(i) + ". " "Chúc mừng sinh nhật <@605232428394610709>")
+            if i == 50000:
                 await message.channel.send("Đã chúc đủ 50000 lời chúc")
                 break
 #run
