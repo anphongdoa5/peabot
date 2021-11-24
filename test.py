@@ -592,8 +592,8 @@ async def on_message(message):
         while True:
             i = i + 1
             await message.channel.send("Chúc mừng sinh nhật <@605232428394610709>")
-            if i == 11:
-                await message.channel.send("Đã chúc đủ 10000 lời chúc")
+            if i == 50001:
+                await message.channel.send("Đã chúc đủ 50000 lời chúc")
                 break
 #run
 client.run(TOKEN)
