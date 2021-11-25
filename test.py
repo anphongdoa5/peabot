@@ -585,7 +585,16 @@ async def on_message(message):
         price = data["bpi"]["USD"]["rate"]
      
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
-
+ 
+#spam
+    if message.content == "?startspam":
+        i = 0
+        while True:
+            i = i + 1
+            await message.channel.send("Lần spam thứ " + str(i))
+            if i == 100:
+                await message.channel.send("Đã Spam Đủ 100 lần")
+                break
 #run
 client.run(TOKEN)
       
