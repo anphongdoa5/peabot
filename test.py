@@ -164,9 +164,9 @@ async def on_message(message):
         #await message.channel.send(peabot_rep)
 
 #prefix 11 
-    peabot_rep = 'Đừng buồn nữa, vui lên. Không tôi xiên bạn đó...'
-    if message.content == ':(' or message.content == ':((' or message.content == ':(((' or message.content == '=(' or message.content == '=((' or message.content == '=(((':
-        await message.channel.send(peabot_rep)
+    #peabot_rep = 'Đừng buồn nữa, vui lên. Không tôi xiên bạn đó...'
+    #if message.content == ':(' or message.content == ':((' or message.content == ':(((' or message.content == '=(' or message.content == '=((' or message.content == '=(((':
+        #await message.channel.send(peabot_rep)
 
 #prefix 12
     if message.content == '?time':
