@@ -189,9 +189,9 @@ async def on_message(message):
         await message.channel.send(response)
 
 #prefix 15
-    if 'bye' in message.content or 'bai' in message.content or 'Bye' in message.content or 'Bai' in message.content:
-        response = 'Bye bye bạn nhé ^^'
-        await message.channel.send(response)
+    #if 'bye' in message.content or 'bai' in message.content or 'Bye' in message.content or 'Bai' in message.content:
+        #response = 'Bye bye bạn nhé ^^'
+        #await message.channel.send(response)
         
 #prefix 16
     if message.content == '?contact':
