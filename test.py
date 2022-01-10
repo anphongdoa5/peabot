@@ -664,6 +664,10 @@ async def on_message(message):
      
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
  
+#sua gau gau
+    if 'sủa đi em' in message.content:
+        await message.channel.send("Gâu gâu gâu gâu, ẳng ẳng.......")
+        
 #spam
     if message.content == "?spamkietlac":
         i = 0
@@ -673,6 +677,7 @@ async def on_message(message):
             if i == 30000:
                 await message.channel.send("Đã gửi đủ 30000 lời chúc đến Kiệt Lặc")
                 break
+             
 #run
 client.run(TOKEN)
       
