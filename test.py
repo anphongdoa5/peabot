@@ -46,7 +46,7 @@ async def on_member_join(member):
 async def on_message(message):
 #help prefix    
     if message.content == '?help':
-        myembed = discord.Embed (title = 'Peanutss Bot (v2.1)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
+        myembed = discord.Embed (title = 'Peanutss Bot (v2.2)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (11)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive` `gianghoa`", inline=False)
@@ -58,7 +58,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: `eth` `dogecoin` ```"
+        updated = f"```- Các chức năng mới được Update: eth, dogecoin ```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -659,26 +659,26 @@ async def on_message(message):
 
 #prefix 44 (chùm coin)
     if message.content == '?bitcoin':
-        api = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        data = api.json()
-        price = data["bpi"]["USD"]["rate"]
-        await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
+        btc_api = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        btc_data = btc_api.json()
+        btc_price = btc_data["bpi"]["USD"]["rate"]
+        await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(btc_price) + ' USD/1 BTC')
         
         
     if message.content == '?eth':
-            api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
-            data = api.json()
-            price = data["ethereum"]["current_price"]
+            eth_api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+            eth_data = eth_api.json()
+            eth_price = eth_data["ethereum"]["current_price"]
 
-            await message.channel.send('Tỉ giá Ethereum hiện tại là: ' + str(price) + ' USD/1 ETH')
+            await message.channel.send('Tỉ giá Ethereum hiện tại là: ' + str(eth_price) + ' USD/1 ETH')
       
     
     if message.content == '?dogecoin':
-                api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
-                data = api.json()
-                price = data["dogecoin"]["current_price"]
+                doge_api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+                doge_data = doge_api.json()
+                doge_price = doge_data["dogecoin"]["current_price"]
 
-                await message.channel.send('Tỉ giá Doge Coin hiện tại là: ' + str(price) + ' USD/1 DOGE')
+                await message.channel.send('Tỉ giá Doge Coin hiện tại là: ' + str(doge_price) + ' USD/1 DOGE')
 
                 
    
