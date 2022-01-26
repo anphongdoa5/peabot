@@ -48,16 +48,17 @@ async def on_message(message):
     if message.content == '?help':
         myembed = discord.Embed (title = 'Peanutss Bot (v2.1)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
-        myembed.add_field (name = "💬 Tương Tác - (11)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk` `bitcoin`", inline=False)
+        myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
         myembed.add_field (name = "😊 Fun - (11)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive` `gianghoa`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
         myembed.add_field (name = "📺 Giải trí - (14)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing` `betrayal` `lettertile` `wordsnack` `doodlecrew` `spellcast` `awkword` `puttparty`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
+        myembed.add_field (name = "🪙 Tiền Tệ - (3)", value = "`bitcoin` `eth` `dogecoin`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `status` `avatarsv` `botserver`", inline=False)
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update (BigUpdate): lettertile, wordsnack, doodlecrew, spellcast, awkword, puttparty \n- Lệnh youtube đã fix và hoạt động lại bình thường!!```"
+        updated = f"```- Các chức năng mới được Update: `eth` `dogecoin` ```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
