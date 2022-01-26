@@ -656,14 +656,31 @@ async def on_message(message):
     if message.content == '?gianghoa':
         await message.channel.send('https://images-ext-2.discordapp.net/external/Nv-nYhl8A0vhAqtktbwujG61vGqL1Lz1nuO2NA7rN5w/https/media.discordapp.net/attachments/781481778795118612/895984488906100736/gianghoa.gif?width=351&height=45')
 
-#prefix 44
+#prefix 44 (chùm coin)
     if message.content == '?bitcoin':
         api = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
         data = api.json()
         price = data["bpi"]["USD"]["rate"]
-     
         await message.channel.send('Tỉ giá Bitcoin hiện tại là: ' + str(price) + ' USD/1 BTC')
- 
+        
+        
+    if message.content == '?eth':
+            api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+            data = api.json()
+            price = data["ethereum"]["current_price"]
+
+            await message.channel.send('Tỉ giá Ethereum hiện tại là: ' + str(price) + ' USD/1 ETH')
+      
+    
+    if message.content == '?dogecoin':
+                api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+                data = api.json()
+                price = data["dogecoin"]["current_price"]
+
+                await message.channel.send('Tỉ giá Doge Coin hiện tại là: ' + str(price) + ' USD/1 DOGE')
+
+                
+   
 #sua gau gau
     if 'sủa đi em' in message.content:
         await message.channel.send("Gâu gâu gâu gâu, ẳng ẳng.......")
