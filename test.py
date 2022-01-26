@@ -669,7 +669,7 @@ async def on_message(message):
             eth_api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
             tach_json_eth = eth_api.json()
             eth_data = tach_json_eth[1] #lại là api buồi đầu, 1 là vị trí của eth
-            eth_price = eth_data["ethereum"]["current_price"]
+            eth_price = eth_data["current_price"]
 
             await message.channel.send('Tỉ giá Ethereum hiện tại là: ' + str(eth_price) + ' USD/1 ETH')
       
@@ -678,7 +678,7 @@ async def on_message(message):
                 doge_api = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
                 tach_json_doge = doge_api.json()
                 doge_data = tach_json_doge[10] #lại là api buồi đầu, 10 là vị trí của doge
-                doge_price = doge_data["dogecoin"]["current_price"]
+                doge_price = doge_data["current_price"]
 
                 await message.channel.send('Tỉ giá Doge Coin hiện tại là: ' + str(doge_price) + ' USD/1 DOGE')
 
