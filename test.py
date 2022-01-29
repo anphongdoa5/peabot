@@ -707,7 +707,7 @@ async def on_message(message):
 
         #dem ngay gio
         ngay = count//86400
-        gio = ((count-ngay*86400)//3600)-7
+        gio = (count-ngay*86400)//3600
         phut = (count-ngay*86400-gio*3600)//60
         giay = count-ngay*86400-gio*3600-phut*60
         await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio-7}** giờ **{phut}** phút **{giay}** giây nữa là đến tết rồi!!!!") #gio - 7 vi server lech mui gio
