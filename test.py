@@ -58,7 +58,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: eth, dogecoin \n- Nhân dịp đầu xuân năm mới 2022, mình xin chúc các bạn có một năm mới nhiều sức khỏe, đạt nhiều thành công và may mắn!!```"
+        updated = f"```- Các chức năng mới được Update: eth, dogecoin \n - Nhân dịp đầu xuân năm mới 2022, mình xin chúc các bạn có một năm mới nhiều sức khỏe, đạt nhiều thành công và may mắn!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -710,7 +710,7 @@ async def on_message(message):
         gio = (count-ngay*86400)//3600
         phut = (count-ngay*86400-gio*3600)//60
         giay = count-ngay*86400-gio*3600-phut*60
-        message.channel.send(f"Chỉ còn {ngay} ngày {gio} giờ {phut} phút {giay} giây nữa là đến tết rồi!!!!")
+        await message.channel.send(f"Chỉ còn {ngay} ngày {gio} giờ {phut} phút {giay} giây nữa là đến tết rồi!!!!")
              
 #run
 client.run(TOKEN)
