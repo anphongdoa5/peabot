@@ -46,9 +46,9 @@ async def on_member_join(member):
 async def on_message(message):
 #help prefix    
     if message.content == '?help':
-        myembed = discord.Embed (title = 'Peanutss Bot (v2.2)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
+        myembed = discord.Embed (title = 'Peanutss Bot (v2.3)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
-        myembed.add_field (name = "💬 Tương Tác - (10)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk`", inline=False)
+        myembed.add_field (name = "💬 Tương Tác - (11)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk` `saptet`", inline=False)
         myembed.add_field (name = "😊 Fun - (11)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive` `gianghoa`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
         myembed.add_field (name = "📺 Giải trí - (14)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing` `betrayal` `lettertile` `wordsnack` `doodlecrew` `spellcast` `awkword` `puttparty`", inline=False)
@@ -58,7 +58,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: eth, dogecoin \n - Nhân dịp đầu xuân năm mới 2022, mình xin chúc các bạn có một năm mới nhiều sức khỏe, đạt nhiều thành công và may mắn!!```"
+        updated = f"```- Các chức năng mới được Update: eth, dogecoin \n- Nhân dịp đầu xuân năm mới 2022, mình xin chúc các bạn có một năm mới nhiều sức khỏe, đạt nhiều thành công và may mắn!!```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -697,6 +697,20 @@ async def on_message(message):
             if i == 30000:
                 await message.channel.send("Đã gửi đủ 30000 lời chúc đến Kiệt Lặc")
                 break
+        
+#dem nguoc ngay tet
+    if message.content == "?saptet":
+        #set up ngay den tet
+        ngay_tet = datetime.strptime('Feb 1 2022  00:00', '%b %d %Y %H:%M') 
+        hom_nay = datetime.now()
+        count = int((ngay_tet - hom_nay).total_seconds())
+
+        #dem ngay gio
+        ngay = count//86400
+        gio = (count-ngay*86400)//3600
+        phut = (count-ngay*86400-gio*3600)//60
+        giay = count-ngay*86400-gio*3600-phut*60
+        message.channel.send(f"Chỉ còn {ngay} ngày {gio} giờ {phut} phút {giay} giây nữa là đến tết rồi!!!!")
              
 #run
 client.run(TOKEN)
