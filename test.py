@@ -702,15 +702,15 @@ async def on_message(message):
     if message.content == "?saptet":
         #set up ngay den tet
         ngay_tet = datetime.strptime('Feb 1 2022  00:00', '%b %d %Y %H:%M') 
-        hom_nay = datetime.now()
-        count = int((ngay_tet - hom_nay).total_seconds())
+        hom_nay = datetime.now(pytz.timezone('Asia/Ho_Chi_Minh')) #set timezone về VN
+        count = int((ngay_tet - hom_nay.replace(tzinfo=None)).total_seconds())
 
         #dem ngay gio
         ngay = count//86400
         gio = (count-ngay*86400)//3600
         phut = (count-ngay*86400-gio*3600)//60
         giay = count-ngay*86400-gio*3600-phut*60
-        await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio-7}** giờ **{phut}** phút **{giay}** giây nữa là đến tết rồi!!!!") #gio - 7 vi server lech mui gio
+        await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio}** giờ **{phut}** phút **{giay}** giây nữa là đến tết rồi!!!!") #gio - 7 vi server lech mui gio
              
 #run
 client.run(TOKEN)
