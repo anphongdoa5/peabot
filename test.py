@@ -700,7 +700,7 @@ async def on_message(message):
 #dem nguoc ngay tet
     if message.content == "?saptet":
         #set up ngay den tet
-        ngay_tet = datetime.strptime('Feb 1 2022  00:00', '%b %d %Y %H:%M') 
+        ngay_tet = datetime.strptime('Jan 22 2023 00:00', '%b %d %Y %H:%M') 
         hom_nay = datetime.now(pytz.timezone('Asia/Ho_Chi_Minh')) #set timezone về VN
         count = int((ngay_tet - hom_nay.replace(tzinfo=None)).total_seconds())
 
