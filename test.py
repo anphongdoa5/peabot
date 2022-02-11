@@ -538,46 +538,8 @@ async def on_message(message):
 
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
-  
-#prefix 42
-    if message.content == '?lettertile':
-        if (message.author.voice):   #kiểm tra người trong voice 
-            voice = message.author.voice.channel
-
-            #tạo url youtube together
-            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'lettertile')
-            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
-            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
-
-        else:
-            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
             
-#prefix 43
-    if message.content == '?wordsnack':
-        if (message.author.voice):   #kiểm tra người trong voice 
-            voice = message.author.voice.channel
 
-            #tạo url youtube together
-            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'wordsnack')
-            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
-            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
-
-        else:
-            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
-            
-#prefix 44
-    if message.content == '?doodlecrew':
-        if (message.author.voice):   #kiểm tra người trong voice 
-            voice = message.author.voice.channel
-
-            #tạo url youtube together
-            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'doodlecrew')
-            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
-            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
-
-        else:
-            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
-            
 #prefix 45
     if message.content == '?spellcast':
         if (message.author.voice):   #kiểm tra người trong voice 
@@ -603,8 +565,7 @@ async def on_message(message):
 
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
-        
-#prefix 46
+ #prefix 47      
     if message.content == '?sketchheads':
         if (message.author.voice):   #kiểm tra người trong voice 
             voice = message.author.voice.channel
@@ -617,18 +578,6 @@ async def on_message(message):
         else:
             await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
             
-#prefix 46
-    if message.content == '?puttparty':
-        if (message.author.voice):   #kiểm tra người trong voice 
-            voice = message.author.voice.channel
-
-            #tạo url youtube together
-            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'puttparty')
-            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
-            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
-
-        else:
-            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
             
 #prefix 41
     if message.content == '?botserver':
