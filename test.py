@@ -50,7 +50,7 @@ async def on_message(message):
         myembed.add_field (name = "💬 Tương Tác - (11)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk` `saptet`", inline=False)
         myembed.add_field (name = "😊 Fun - (11)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive` `gianghoa`", inline=False)
         myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
-        myembed.add_field (name = "📺 Giải trí - (14)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing` `betrayal` `lettertile` `wordsnack` `doodlecrew` `spellcast` `awkword` `puttparty`", inline=False)
+        myembed.add_field (name = "📺 Giải trí - (15)", value = "`join, connect` `leave, disconnect` `play` `youtube` `chess` `poker` `fishing` `betrayal` `lettertile` `wordsnack` `doodlecrew`  `spellcast` `awkword` `puttparty` `sketchheads`", inline=False)
         myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
         myembed.add_field (name = "🪙 Tiền Tệ - (3)", value = "`bitcoin` `eth` `dogecoin`", inline=False)
         myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `status` `avatarsv` `botserver`", inline=False)
@@ -598,6 +598,19 @@ async def on_message(message):
 
             #tạo url youtube together
             link = await client.togetherControl.create_link(message.author.voice.channel.id, 'awkword')
+            await message.channel.send(f'Nhấn vào link để chơi: {link} ')
+            await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
+
+        else:
+            await message.channel.send('❌| Bạn phải vào kênh voice trước!!')
+        
+#prefix 46
+    if message.content == '?sketchheads':
+        if (message.author.voice):   #kiểm tra người trong voice 
+            voice = message.author.voice.channel
+
+            #tạo url youtube together
+            link = await client.togetherControl.create_link(message.author.voice.channel.id, 'sketchheads')
             await message.channel.send(f'Nhấn vào link để chơi: {link} ')
             await message.channel.send('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!')
 
