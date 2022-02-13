@@ -672,6 +672,12 @@ async def on_message(message):
         phut = (count-ngay*86400-gio*3600)//60
         giay = count-ngay*86400-gio*3600-phut*60
         await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio}** giờ **{phut}** phút **{giay}** giây nữa là đến tết rồi!!!!") #gio - 7 vi server lech mui gio
+       
+
+    if 'cherry' in message.content:
+        pea_rep = 'Cherry là tiên là phật, là sức bật của lò xo, là thước đo của lòng người, là tiếng cười của tuổi trẻ, là sức khỏe của tuổi già, là cái đà của danh vọng, là cái vọng để che thân, là cán cân của công lý, cherry là hết ý (")>'
+        await message.channel.send(pea_rep)
+        await message.channel.send("Cherry MX Bờ Nâu - Ông trùm tắc tai, kẻ hủy diệt real thóc")
              
 #run
 client.run(TOKEN)
