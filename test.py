@@ -679,12 +679,7 @@ async def on_message(message):
         await message.channel.send(pea_rep)
         await message.channel.send("Cherry MX Bờ Nâu - Ông trùm tắc tai, kẻ hủy diệt real thóc")
         
-#emotional damage
-    if 'emotional damage' or 'Emotional damage' in message.content:
-        pea_rep = "Ì mâu sờn nồ đem mịt!!!"
-        await message.channel.send(pea_rep)
-        await message.channel.send("https://media.giphy.com/media/ro08ZmQ1MeqZypzgDN/giphy.gif")
-        
+
              
 #run
 client.run(TOKEN)
