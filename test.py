@@ -45,7 +45,7 @@ async def on_member_join(member):
 async def on_message(message):
 #help prefix    
     if message.content == '?help':
-        myembed = discord.Embed (title = 'Peanutss Bot (v2.3)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
+        myembed = discord.Embed (title = 'Peanutss Bot (v2.4)', description = 'Sử dụng `?[lệnh]` để tương tác với bot', color = discord.Color.gold())
         myembed.set_author (name = "Danh Sách Lệnh")
         myembed.add_field (name = "💬 Tương Tác - (11)", value = "`somayman` `hello` `banlaai` `info` `botngu` `botkhon` `time` `coronavn` `corona` `bonk` `saptet`", inline=False)
         myembed.add_field (name = "😊 Fun - (11)", value = "`fbi` `daoli` `ongda` `haylam` `hug` `smile` `kill` `cry` `kiss` `highfive` `gianghoa`", inline=False)
@@ -57,7 +57,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: eth, dogecoin \n - Nhân dịp đầu xuân năm mới 2022, mình xin chúc các bạn có một năm mới nhiều sức khỏe, đạt nhiều thành công và may mắn!!```"
+        updated = f"```- Các chức năng mới được Update: eth, dogecoin, saptet \n - Thêm một vài Easter Eggs zui zui! ```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
@@ -671,13 +671,20 @@ async def on_message(message):
         gio = (count-ngay*86400)//3600
         phut = (count-ngay*86400-gio*3600)//60
         giay = count-ngay*86400-gio*3600-phut*60
-        await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio}** giờ **{phut}** phút **{giay}** giây nữa là đến tết rồi!!!!") #gio - 7 vi server lech mui gio
+        await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio}** giờ **{phut}** phút **{giay}** giây nữa là đến tết 2023 rồi!!!!") 
        
-
+#cherry la tien la phat
     if 'cherry' in message.content:
         pea_rep = 'Cherry là tiên là phật, là sức bật của lò xo, là thước đo của lòng người, là tiếng cười của tuổi trẻ, là sức khỏe của tuổi già, là cái đà của danh vọng, là cái vọng để che thân, là cán cân của công lý, cherry là hết ý (")>'
         await message.channel.send(pea_rep)
         await message.channel.send("Cherry MX Bờ Nâu - Ông trùm tắc tai, kẻ hủy diệt real thóc")
+        
+#emotional damage
+    if 'emotional damage' or 'Emotional damage' in message.content:
+        pea_rep = "Ì mâu sờn nồ đem mịt!!!"
+        await message.channel.send(pea_rep)
+        await message.channel.send("https://media.giphy.com/media/ro08ZmQ1MeqZypzgDN/giphy.gif")
+        
              
 #run
 client.run(TOKEN)
