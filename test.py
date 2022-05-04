@@ -675,16 +675,16 @@ async def on_message(message):
         await message.channel.send(f"Chỉ còn **{ngay}** ngày **{gio}** giờ **{phut}** phút **{giay}** giây nữa là đến tết 2023 rồi!!!!") 
        
 #cherry la tien la phat
-    if 'cherry' in message.content:
-        pea_rep = 'Cherry là tiên là phật, là sức bật của lò xo, là thước đo của lòng người, là tiếng cười của tuổi trẻ, là sức khỏe của tuổi già, là cái đà của danh vọng, là cái vọng để che thân, là cán cân của công lý, cherry là hết ý (")>'
-        await message.channel.send(pea_rep)
-        await message.channel.send("Cherry MX Bờ Nâu - Ông trùm tắc tai, kẻ hủy diệt real thóc")
+    #if 'cherry' in message.content:
+        #pea_rep = 'Cherry là tiên là phật, là sức bật của lò xo, là thước đo của lòng người, là tiếng cười của tuổi trẻ, là sức khỏe của tuổi già, là cái đà của danh vọng, là cái vọng để che thân, là cán cân của công lý, cherry là hết ý (")>'
+        #await message.channel.send(pea_rep)
+        #await message.channel.send("Cherry MX Bờ Nâu - Ông trùm tắc tai, kẻ hủy diệt real thóc")
         
 #emotional damage
-    if 'emotional damage' in message.content or 'Emotional damage' in message.content:
-        peaboy_rep = "Ì mâu sờn nồ đem mịt!!!"
-        await message.channel.send(pea_rep)
-        await message.channel.send("https://media.giphy.com/media/ro08ZmQ1MeqZypzgDN/giphy.gif")
+    #if 'emotional damage' in message.content or 'Emotional damage' in message.content:
+        #peaboy_rep = "Ì mâu sờn nồ đem mịt!!!"
+        #await message.channel.send(pea_rep)
+        #await message.channel.send("https://media.giphy.com/media/ro08ZmQ1MeqZypzgDN/giphy.gif")
         
              
 #run
