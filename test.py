@@ -57,7 +57,7 @@ async def on_message(message):
         myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
         myembed.set_footer(text=f"Bot sẽ được update liên tục. Cảm ơn mọi người đã ủng hộ ^^")
         
-        updated = f"```- Các chức năng mới được Update: eth, dogecoin, saptet \n - Thêm một vài Easter Eggs zui zui! ```"
+        updated = f"```- Các chức năng mới được Update: eth, dogecoin, saptet \n- Donate Cho Dev Mua Máy Ảnh Tại: https://playerduo.com/peanutss ```"
         
         await message.channel.send(embed = myembed)
         await message.channel.send(updated)
