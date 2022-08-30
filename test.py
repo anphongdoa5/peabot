@@ -84,6 +84,13 @@ async def self(interaction: discord.Interaction):
 async def self(interaction: discord.Interaction, nhap_tuoi: str):
     await interaction.response.send_message(f"Bạn đã {nhap_tuoi} tuổi rồi", ephemeral = False)
 
+#
+
+@tree.command(name="máy-tính-chiều-cao", description = "Dùng để tính toán chiều cao của bạn (nhập số centimet)")
+async def self(interaction: discord.Interaction, nhap_chieu_cao: int):
+    await interaction.response.send_message(f"Bạn cao {nhap_chieu_cao}cm ", ephemeral = False)
+    
+    
 ######
 @tree.command(name="meme", description = "Gửi cho bạn một meme")
 async def self(interaction: discord.Interaction):
