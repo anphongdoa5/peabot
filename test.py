@@ -1,5 +1,4 @@
 # bot.py
-from ast import Try
 from distutils.cmd import Command
 from importlib.metadata import requires
 from math import perm
@@ -17,7 +16,7 @@ from discord import user
 from discord import member
 from discord import app_commands
 from discord.ext import commands
-from discord.ext.commands import has_permissions, MissingPermissions
+from discord.ext.commands import MissingPermissions
 from dotenv import load_dotenv
 from datetime import datetime
 from dotenv.main import with_warn_for_invalid_lines
@@ -73,7 +72,7 @@ async def self(interaction: discord.Interaction):
     myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
     myembed.add_field (name = "🪙 Tiền Tệ - (1)", value = "`binance`", inline=False)
     myembed.add_field (name = "⚠️Quản Lí - (3)", value = "`kick` `ban` `unban`: Comming Soon", inline=False)
-    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (3)", value = "`dịch` `sắp-tết` `wikipedia`", inline=False)
+    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (2)", value = "`dịch` `sắp-tết`", inline=False)
     myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `server-status` `server-avatar`", inline=False)
     myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
     myembed.set_footer(text="Big Update: Chuyển toàn bộ các câu lệnh sang Slash Commands {/}")
@@ -82,10 +81,16 @@ async def self(interaction: discord.Interaction):
 
 #
 @tree.command(name="máy-tính-tuổi-thông-minh", description = "Dùng để tính toán tuổi của bạn")
-async def self(interaction: discord.Interaction, nhap_tuoi: int):
+async def self(interaction: discord.Interaction, nhap_tuoi: str):
     await interaction.response.send_message(f"Bạn đã {nhap_tuoi} tuổi rồi", ephemeral = False)
 
+#
 
+@tree.command(name="máy-tính-chiều-cao", description = "Dùng để tính toán chiều cao của bạn (nhập số centimet)")
+async def self(interaction: discord.Interaction, nhap_chieu_cao: int):
+    await interaction.response.send_message(f"Bạn cao {nhap_chieu_cao}cm ", ephemeral = False)
+    
+    
 ######
 @tree.command(name="meme", description = "Gửi cho bạn một meme")
 async def self(interaction: discord.Interaction):
@@ -487,6 +492,8 @@ async def action_module(interaction: discord.Interaction):
     response = random.choice(peabot_rep)
     await interaction.response.send_message(response)
 
+
+    
 ######
 @tree.command(name="wikipedia", description = "Tìm kiếm thông tin trên Wikipedia")
 async def wiki(interaction: discord.Interaction, ngon_ngu: str, noi_dung: str):
@@ -531,28 +538,46 @@ async def wiki_autocomplete(
         for wiki1 in ngon_ngu if current.lower() in wiki1.lower()
         ]
 
-
-
-######
-@tree.command(name="kick", description = "Kick một member nào đó",)
-@commands.has_permissions(kick_members = True, administrator = True)
-async def kick(interaction: discord.Interaction, user : discord.Member, li_do: str):#
-        await interaction.response.send_message(f"**{user}** đã bị kick khỏi server! \nLí do: **{li_do}**", ephemeral = False)
-        await user.kick(reason=li_do)
- 
+#####
 
 
 
+#@tree.command(name="kick", description = "Kick một member nào đó",)
+##@commands.has_permissions(kick_members = True, administrator = True)
+#async def kick(interaction: discord.Interaction, user : discord.Member, li_do: str):#
+   # if user.id == interaction.user.id:
+   #     print("1 chạy")
+   #     await interaction.response.send_message("Bạn không thể tự kick chính mình!!")
+   # elif user.guild_permissions.administrator:
+   #     print("2 chạy")
+   #     await interaction.response.send_message("Ơ kìa anh bạn, bạn không thể kick được Admin đâu :))", ephemeral = False)
+   # elif isinstance(interaction, MissingPermissions):
+   #     print("3 chạy")
+   #     await interaction.response.send_message("Bạn cần có quyền **Kick Member** và **Admin**!!", ephemeral = False)
+   # elif commands.has_permissions(kick_members = True, administrator = True): 
+   #     print("4 chạy")
+   #     await interaction.response.send_message(f"**{user}** đã bị kick khỏi server! \nLí do: **{li_do}**", ephemeral = False)
+   #     await user.kick(reason=li_do)
+   # else:
+   #     print("5 chạy")
+   #     await interaction.response.send_message("Bot không được cấp quyền Kick Member - Admin, vui lòng điều chỉnh quyền hạn của bot trong cài đặt server", ephemeral = False)
+       
 
-@tree.command(name="test", description = "...",)
-@has_permissions(kick_members=True, administrator = True)  
-async def test(interaction: discord.Interaction):
-    await interaction.response.send_message("có")
+#@tree.command(name="test", description = "...",)
+#async def self(interaction: discord.Interaction):
+#    if commands.has_permissions(mod = True) == True:#
+  #      await interaction.response.send_message("có")
+    # else:
+     #   await interaction.response.send_message("không")
 
-@test.error 
-async def n(error, interaction):
-    if isinstance(error, MissingPermissions):
-        await interaction.response.send_message("Không")
+#@kick.error
+#async def kick_error(interaction ,error):
+#   if isinstance(error, MissingPermissions):
+#       await interaction.response.send_message("Bạn cần có quyền **Kick Member** và **Admin**!!")
+#   else:
+#       await interaction.response.send_message("Đã có lỗi!")
+#      raise error
+
+
 #run
 client.run(TOKEN) 
-      
