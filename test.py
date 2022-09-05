@@ -36,7 +36,7 @@ import wikipedia
 
 #
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN2')
 
 #setup ready run
 class aclient(discord.Client):
