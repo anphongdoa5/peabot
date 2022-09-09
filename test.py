@@ -338,6 +338,7 @@ async def self(interaction: discord.Interaction):
     contactembed.set_author (name = "Liên hệ với Dev tại:")
     contactembed.add_field (name = "Discord Account ^^:", value = 'Peanuts Is Me (Andy)#2757', inline=False)
     contactembed.add_field (name = "Link Facebook ^^:", value = 'https://facebook.com/yt.andymusic', inline=False)
+    contactembed.add_field (name = "Website ^^:", value = 'https://peanutssbot.tk', inline=False)
     contactembed.add_field (name = "Link Youtube ^^:", value = 'https://youtube.com/c/andymusicc', inline=False)
     contactembed.add_field (name = "Github:", value = 'https://github.com/anphongdoa5', inline=False)
     await interaction.response.send_message(embed = contactembed, ephemeral = False)
