@@ -30,6 +30,7 @@ from translate import Translator
 import interactions
 from typing import List
 import wikipedia
+from weather import Weather
 
 
 
@@ -63,7 +64,7 @@ tree = app_commands.CommandTree(client)
 #commands list
 @tree.command(name="help", description = "Xem tất cả các lệnh của bot")
 async def self(interaction: discord.Interaction):
-    myembed = discord.Embed (title = 'Peanutss Bot (v3.0)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
+    myembed = discord.Embed (title = 'Peanutss Bot (v3.0.1)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
     myembed.set_author (name = "Danh Sách Lệnh")
     myembed.add_field (name = "💬 Tương Tác - (4)", value = "`số-may-mắn` `covid19` `covid19vn` `máy-tính-tuổi`", inline=False)
     myembed.add_field (name = "😊 Fun - (15)", value = " `văn-mẫu` `hug` `smile` `kill` `cry` `kiss` `highfive` `pat` `smug` `bonk` `lick` `awoo` `blush` `wave` `slap`", inline=False)
@@ -71,8 +72,8 @@ async def self(interaction: discord.Interaction):
     myembed.add_field (name = "📺 Giải Trí - (2)", value = "`action` `youtube`", inline=False)
     myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
     myembed.add_field (name = "🪙 Tiền Tệ - (1)", value = "`binance`", inline=False)
-    myembed.add_field (name = "⚠️Quản Lí - (3)", value = "`kick` `ban` `unban`: Comming Soon", inline=False)
-    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (2)", value = "`dịch` `sắp-tết`", inline=False)
+    myembed.add_field (name = "⚠️Quản Lí - (4)", value = "`kick` `ban` `unban` `timeout`: Comming Soon", inline=False)
+    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (3)", value = "`dịch` `sắp-tết` `thời-tiết`", inline=False)
     myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `server-status` `server-avatar`", inline=False)
     myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
     myembed.set_footer(text="Big Update: Chuyển toàn bộ các câu lệnh sang Slash Commands {/}")
