@@ -539,7 +539,47 @@ async def wiki_autocomplete(
         ]
 
 #####
+@tree.command(name = 'thời-tiết', description = 'Xem tình hình thời tiết ở bất kì thành phố nào trên thế giới')
+async def weather(interaction: discord.Interaction, city_name: str):
+    try:
+        locate = Weather(city_name)
+        wind_speed = locate.wind_speed
+        temp = round(locate.temp, 1)
+        max_temp = round(locate.temp_max, 1)
+        min_temp = round(locate.temp_min, 1)
+        humidity = locate.humidity
+        uv_point = locate.uv
 
+        if uv_point <= 2:
+            warn = 'An Toàn'
+            tips = 'Bạn nên sử dụng kính râm và kem chống nắng khi ra ngoài trời!'
+            embed_color = discord.Color.green()
+        if uv_point > 2 and uv_point <= 5:
+            warn = 'Khá Nguy Hiểm'
+            tips = 'Bạn nên sử dụng kính râm dùng kem chống nắng và che chắn làn da cẩn thận khi ở ngoài trời nắng!'
+            embed_color = discord.Color.yellow()
+        if uv_point > 5 and uv_point <= 7:
+            warn = 'Nguy Hiểm!'
+            tips = 'Ảnh hưởng mạnh đến làn da, hãy dùng kem chống nắng có SPF 15 hoặc cao hơn và che chắn làn da cẩn thận khi ở ngoài trời nắng!'
+            embed_color = discord.Color.orange()
+        if uv_point > 7:
+            warn = 'Cực Kì Nguy Hiểm!!!'
+            tips = 'Ảnh hưởng rất mạnh lên làn da nếu không được bảo vệ, tiếp xúc lâu có thể gây ung thư và các bệnh khác về da. Hạn chế ra ngoài nếu khu vực của bạn có mức UV này!'
+            embed_color = discord.Color.red() 
+
+        weatherEmbed = discord.Embed(title = f"Thời tiết tại {locate.city} - {locate.country} hiện tại!", color = embed_color)
+        weatherEmbed.add_field(name = 'Nhiệt độ:', value = f'{temp} °C', inline = False)
+        weatherEmbed.add_field(name = 'Nhiệt độ cao nhất:', value = f'{max_temp} °C', inline = True)
+        weatherEmbed.add_field(name = 'Nhiệt độ thấp nhất:', value = f'{min_temp}°C', inline = True)
+        weatherEmbed.add_field(name = 'Tốc độ gió:', value = f"{wind_speed} m/s" , inline = False)
+        weatherEmbed.add_field(name = 'Độ ẩm:', value = f'{humidity}%', inline = False)
+        weatherEmbed.add_field(name = 'Chỉ số UV:', value = f'{uv_point} - {warn}', inline = False)
+        weatherEmbed.add_field(name = 'Lời Khuyên:', value = f'{tips}', inline = False)
+        weatherEmbed.set_thumbnail(url='https://cdn.discordapp.com/attachments/946341795950895104/1025413604712919130/unknown.png')
+        weatherEmbed.set_footer(text = f'Dự báo thời tiết • Bởi {interaction.user}')
+        await interaction.response.send_message(embed = weatherEmbed)
+    except:
+        await interaction.response.send_message("Không tìm thấy thành phố bạn yêu cầu", ephemeral = True)
 
 
 #@tree.command(name="kick", description = "Kick một member nào đó",)
