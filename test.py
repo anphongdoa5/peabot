@@ -581,6 +581,16 @@ async def weather(interaction: discord.Interaction, city_name: str):
         await interaction.response.send_message(embed = weatherEmbed)
     except:
         await interaction.response.send_message("Không tìm thấy thành phố bạn yêu cầu", ephemeral = True)
+      
+ 
+#####
+@tree.command(name = 'avatar', description = 'Xem avatar của mình hoặc của người khác')
+async def avatar(interaction: discord.Interaction, user: discord.Member):
+    avatarEmbed = discord.Embed(title = f'Avatar của {user}:', color = discord.Color.gold())
+    avatarEmbed.set_image(url = user.avatar)
+    avatarEmbed.set_footer(text = f'Lệnh được sử dụng bởi {interaction.user}')
+    await interaction.response.send_message(embed = avatarEmbed)
+
 
 
 #@tree.command(name="kick", description = "Kick một member nào đó",)
