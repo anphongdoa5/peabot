@@ -69,12 +69,12 @@ async def self(interaction: discord.Interaction):
     myembed.add_field (name = "💬 Tương Tác - (4)", value = "`số-may-mắn` `covid19` `covid19vn` `máy-tính-tuổi`", inline=False)
     myembed.add_field (name = "😊 Fun - (15)", value = " `văn-mẫu` `hug` `smile` `kill` `cry` `kiss` `highfive` `pat` `smug` `bonk` `lick` `awoo` `blush` `wave` `slap`", inline=False)
     myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
-    myembed.add_field (name = "📺 Giải Trí - (2)", value = "`action` `youtube`", inline=False)
+    myembed.add_field (name = "📺 Giải Trí - (4)", value = "`action` `youtube` `cờ-vua` `poker`", inline=False)
     myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
     myembed.add_field (name = "🪙 Tiền Tệ - (1)", value = "`binance`", inline=False)
     myembed.add_field (name = "⚠️Quản Lí - (4)", value = "`kick` `ban` `unban` `timeout`: Comming Soon", inline=False)
     myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (3)", value = "`dịch` `sắp-tết` `thời-tiết`", inline=False)
-    myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `server-status` `server-avatar`", inline=False)
+    myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `server-status` `server-avatar` `avatar`", inline=False)
     myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
     myembed.set_footer(text="Big Update: Chuyển toàn bộ các câu lệnh sang Slash Commands {/}")
     await interaction.response.send_message(embed = myembed, ephemeral = False)
@@ -213,19 +213,36 @@ async def self(interaction: discord.Interaction):
     girlembed.set_footer(text=f"Mỗi bức ảnh, một niềm vui ❤️")
     await interaction.response.send_message(embed = girlembed, ephemeral = False)
 
-
+#####
 @tree.command(name="youtube", description = "Xem Youtube trực tiếp trên Discord")
-async def youtube(interaction: discord.Interaction, member :  discord.Member):
-    channel = member.voice.channel
-    if channel:   #kiểm tra người trong voice 
-        await channel.connect()
-        #tạo url youtube together
-        #link = await client.togetherControl.create_link(interaction.author.voice.channel.id, 'youtube')
-        #await interaction.response.send_message(f'Nhấn vào link để xem Youtube: {link}', ephemeral = False)
-        #await interaction.response.send_message('Lưu Ý: Chức năng chỉ hoạt động trên các thiết bị PC - Laptop, không hỗ trợ cho các thiết bị điện thoại!!', ephemeral = False)  
-    else:
+async def youtube(interaction: discord.Interaction): 
+    try:
+        voice_id = interaction.user.voice.channel.id
+        link = await client.togetherControl.create_link(voice_id, 'youtube')
+        await interaction.response.send_message(f'Nhấn vào link để xem Youtube: {link}', ephemeral = False)
+    except:
         await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
 
+###
+@tree.command(name="cờ-vua", description = "Chơi cờ vua trực tiếp trên Discord")
+async def youtube(interaction: discord.Interaction): 
+    try:
+        voice_id = interaction.user.voice.channel.id
+        link = await client.togetherControl.create_link(voice_id, 'chess')
+        await interaction.response.send_message(f'Nhấn vào link để tham gia trò chơi: {link}', ephemeral = False)
+    except:
+        await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
+
+###
+@tree.command(name="poker-night", description = "Chơi bài poker trực tiếp trên Discord")
+async def youtube(interaction: discord.Interaction): 
+    try:
+        voice_id = interaction.user.voice.channel.id
+        link = await client.togetherControl.create_link(voice_id, 'poker')
+        await interaction.response.send_message(f'Nhấn vào link để tham gia trò chơi: {link}', ephemeral = False)
+    except:
+        await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
+######
 
 
 @tree.command(name="sắp-tết", description = "Đếm ngược ngày đến Tết Nguyên Đán")
