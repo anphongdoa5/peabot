@@ -31,6 +31,7 @@ import interactions
 from typing import List
 import wikipedia
 from weather import Weather
+from deep_translator import GoogleTranslator
 
 
 
@@ -64,7 +65,7 @@ tree = app_commands.CommandTree(client)
 #commands list
 @tree.command(name="help", description = "Xem tất cả các lệnh của bot")
 async def self(interaction: discord.Interaction):
-    myembed = discord.Embed (title = 'Peanutss Bot (v3.0.1)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
+    myembed = discord.Embed (title = 'Peanutss Bot (v3.0.2)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
     myembed.set_author (name = "Danh Sách Lệnh")
     myembed.add_field (name = "💬 Tương Tác - (4)", value = "`số-may-mắn` `covid19` `covid19vn` `máy-tính-tuổi`", inline=False)
     myembed.add_field (name = "😊 Fun - (15)", value = " `văn-mẫu` `hug` `smile` `kill` `cry` `kiss` `highfive` `pat` `smug` `bonk` `lick` `awoo` `blush` `wave` `slap`", inline=False)
@@ -73,7 +74,7 @@ async def self(interaction: discord.Interaction):
     myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
     myembed.add_field (name = "🪙 Tiền Tệ - (1)", value = "`binance`", inline=False)
     myembed.add_field (name = "⚠️Quản Lí - (4)", value = "`kick` `ban` `unban` `timeout`: Comming Soon", inline=False)
-    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (3)", value = "`dịch` `sắp-tết` `thời-tiết`", inline=False)
+    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (4)", value = "`dịch` `sắp-tết` `thời-tiết` `chat-with-another-language`", inline=False)
     myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `server-status` `server-avatar` `avatar`", inline=False)
     myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
     myembed.set_footer(text="Big Update: Chuyển toàn bộ các câu lệnh sang Slash Commands {/}")
@@ -317,8 +318,8 @@ async def translate(interaction: discord.Interaction, input_lang: str, output_la
         out_lang = 'es'
     if output_lang == "Tiếng Ý":
         out_lang = 'it'
-    translator = Translator(from_lang=f"{in_lang}", to_lang=f"{out_lang}")
-    result = translator.translate(noidung)
+        
+    result = GoogleTranslator(source=f'{in_lang}', target=f'{out_lang}').translate(text=noidung)
 
     dich_embed = discord.Embed (title = f'Kết quả dịch từ {input_lang} sang {output_lang}:', color = discord.Color.green())
     dich_embed.add_field (name = 'Văn Bản Gốc:', value = noidung, inline = False)
@@ -608,7 +609,62 @@ async def avatar(interaction: discord.Interaction, user: discord.Member):
     avatarEmbed.set_footer(text = f'Lệnh được sử dụng bởi {interaction.user}')
     await interaction.response.send_message(embed = avatarEmbed)
 
+    
+#####
+@tree.command(name = 'chat-with-another-language', description = 'Tự động chuyển đổi tin nhắn của bạn sang ngôn ngữ khác mà bạn muốn')
+async def cwal(interaction: discord.Interaction, language : str, text : str):
 
+    if language == "Tiếng Việt":
+        lang_code = 'vi'
+    if language == "Tiếng Anh":
+        lang_code = 'en'
+    if language == "Tiếng Nhật":
+        lang_code = 'ja'
+    if language == "Tiếng Trung (Phồn Thể)":
+        lang_code = 'zh-tw'
+    if language == "Tiếng Trung (Giản Thể)":
+        lang_code = 'zh-cn'
+    if language == "Tiếng Indo":
+        lang_code = 'id'
+    if language == "Tiếng Hàn":
+        lang_code = 'ko'
+    if language == "Tiếng Thái":
+        lang_code = 'th'
+    if language == "Tiếng Đức":
+        lang_code = 'de'
+    if language == "Tiếng Pháp":
+        lang_code = 'fr'
+    if language == "Tiếng Nga":
+        lang_code = 'ru'
+    if language == "Tiếng Tây Ban Nha":
+        lang_code = 'es'
+    if language == "Tiếng Ý":
+        lang_code = 'it'
+
+
+    trans_text = GoogleTranslator(source='auto', target=f'{lang_code}').translate(text=text)
+
+    username = interaction.user.nick
+    if username == None:
+        username = interaction.user.name #ưu tiên hiển thị nickname trong server, nếu ko có nick name thì hiện tên
+    cwalEmbed = discord.Embed(title = f'{username} reply:', color = discord.Color.blue())
+    cwalEmbed.add_field(name = '*', value = f'{trans_text}', inline = False)
+    cwalEmbed.set_footer(icon_url = f'{interaction.user.avatar}', text = f'By {interaction.user}!' )
+    await interaction.response.send_message(embed = cwalEmbed)
+
+
+@cwal.autocomplete('language')
+async def cwal_autocomplete(
+    interaction: discord.Interaction,
+    current: str,
+) -> List[app_commands.Choice[str]]:
+    language = ['Tiếng Việt', 'Tiếng Anh', 'Tiếng Nhật', 'Tiếng Trung (Phồn Thể)','Tiếng Trung (Giản Thể)', 'Tiếng Indo', 'Tiếng Hàn', 'Tiếng Thái', 'Tiếng Đức', 'Tiếng Pháp', 'Tiếng Nga', 'Tiếng Tây Ban Nha', 'Tiếng Ý']
+    return [
+        app_commands.Choice(name=lang123, value=lang123)
+        for lang123 in language if current.lower() in lang123.lower()
+        ]
+
+######
 
 #@tree.command(name="kick", description = "Kick một member nào đó",)
 ##@commands.has_permissions(kick_members = True, administrator = True)
