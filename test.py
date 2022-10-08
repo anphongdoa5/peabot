@@ -271,9 +271,9 @@ async def translate(interaction: discord.Interaction, input_lang: str, output_la
     if input_lang == "Tiếng Nhật":
         in_lang = 'ja'
     if input_lang == "Tiếng Trung (Phồn Thể)":
-        in_lang = 'zh-tw'
+        in_lang = 'zh-TW'
     if input_lang == "Tiếng Trung (Giản Thể)":
-        in_lang = 'zh-cn'
+        in_lang = 'zh-CN'
     if input_lang == "Tiếng Indo":
         in_lang = 'id'
     if input_lang == "Tiếng Hàn":
@@ -299,9 +299,9 @@ async def translate(interaction: discord.Interaction, input_lang: str, output_la
     if output_lang == "Tiếng Nhật":
         out_lang = 'ja'
     if output_lang == "Tiếng Trung (Phồn Thể)":
-        out_lang = 'zh-tw'
+        out_lang = 'zh-TW'
     if output_lang == "Tiếng Trung (Giản Thể)":
-        out_lang = 'zh-cn'
+        out_lang = 'zh-CN'
     if output_lang == "Tiếng Indo":
         out_lang = 'id'
     if output_lang == "Tiếng Hàn":
@@ -621,9 +621,9 @@ async def cwal(interaction: discord.Interaction, language : str, text : str):
     if language == "Tiếng Nhật":
         lang_code = 'ja'
     if language == "Tiếng Trung (Phồn Thể)":
-        lang_code = 'zh-tw'
+        lang_code = 'zh-TW'
     if language == "Tiếng Trung (Giản Thể)":
-        lang_code = 'zh-cn'
+        lang_code = 'zh-CN'
     if language == "Tiếng Indo":
         lang_code = 'id'
     if language == "Tiếng Hàn":
@@ -647,9 +647,10 @@ async def cwal(interaction: discord.Interaction, language : str, text : str):
     username = interaction.user.nick
     if username == None:
         username = interaction.user.name #ưu tiên hiển thị nickname trong server, nếu ko có nick name thì hiện tên
-    cwalEmbed = discord.Embed(title = f'{username} reply:', color = discord.Color.blue())
-    cwalEmbed.add_field(name = '*', value = f'{trans_text}', inline = False)
-    cwalEmbed.set_footer(icon_url = f'{interaction.user.avatar}', text = f'By {interaction.user}!' )
+
+    cwalEmbed = discord.Embed(color = discord.Color.random())
+    cwalEmbed.set_author(name = f'{username}:', icon_url = f'{interaction.user.avatar}')
+    cwalEmbed.add_field(name = f'{trans_text}', value = '\u200B', inline = False) #\u200B là kí tự trống
     await interaction.response.send_message(embed = cwalEmbed)
 
 
