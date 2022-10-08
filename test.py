@@ -217,12 +217,12 @@ async def self(interaction: discord.Interaction):
 #####
 @tree.command(name="youtube", description = "Xem Youtube trực tiếp trên Discord")
 async def youtube(interaction: discord.Interaction): 
-    #try:
+    try:
         voice_id = interaction.user.voice.channel.id
         link = await client.togetherControl.create_link(voice_id, 'youtube')
         await interaction.response.send_message(f'Nhấn vào link để xem Youtube: {link}', ephemeral = False)
-    #except:
-        #await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
+    except:
+        await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
 
 ###
 @tree.command(name="cờ-vua", description = "Chơi cờ vua trực tiếp trên Discord")
@@ -402,7 +402,7 @@ async def self(interaction: discord.Interaction):
 async def self(interaction: discord.Interaction):
     inviteembed = discord.Embed (color = discord.Color.green())
     inviteembed.set_author (name = "Link Invite Peanutss Bot")
-    inviteembed.add_field (name = "Link:", value = 'https://discord.com/oauth2/authorize?client_id=728462830407254088&permissions=34631477334&scope=bot', inline=False)
+    inviteembed.add_field (name = "Link:", value = 'https://discord.com/api/oauth2/authorize?client_id=728462830407254088&permissions=8&scope=applications.commands%20bot', inline=False)
     await interaction.response.send_message(embed = inviteembed, ephemeral = False)
 
 #
