@@ -49,7 +49,7 @@ class aclient(discord.Client):
             await tree.sync()
             self.synced = True
         print(f"{client.user.name} đã kết nối tới Discord")
-        client.togetherControl = await DiscordTogether('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.TrjVEQvDxeq09ELYON6K1dfTnTA')
+        client.togetherControl = await DiscordTogether('token')
 
         activity = discord.Game(name='/help để nhận hỗ trợ', type=3)
         await client.change_presence(status=discord.Status.online, activity=activity)
@@ -916,4 +916,4 @@ async def self(interaction: discord.Interaction):
 
 
 #run
-client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.TrjVEQvDxeq09ELYON6K1dfTnTA') 
+client.run('token') 
