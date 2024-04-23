@@ -1,44 +1,42 @@
-# bot.py
+import nest_asyncio
 from distutils.cmd import Command
 from importlib.metadata import requires
 from math import perm
 from optparse import Option
 import os
 import random
+from sqlite3 import Timestamp
 from typing import Any, Text
 from unicodedata import name
 from urllib import response
-import discord
+import discord, asyncio
 from discord import channel
 from discord import message
 from discord import embeds
 from discord import user
 from discord import member
+from datetime import timedelta
 from discord import app_commands
 from discord.ext import commands
 from discord.ext.commands import MissingPermissions
-from dotenv import load_dotenv
-from datetime import datetime
-from dotenv.main import with_warn_for_invalid_lines
+# from dotenv import load_dotenv
+from datetime import datetime, timedelta
+# from dotenv.main import with_warn_for_invalid_lines
 import requests
 from discord.utils import get
 from discord.ext import commands
 import aiohttp
 from discord_together import DiscordTogether
 import pytz
-from translate import Translator
-import interactions
 from typing import List
 import wikipedia
 from weather import Weather
 from deep_translator import GoogleTranslator
-
-
-
+from gtts import gTTS
+from ngu import rand_func
 #
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN2')
-
+# load_dotenv()
+# TOKEN = os.getenv('DISCORD_TOKEN')
 #setup ready run
 class aclient(discord.Client):
     def __init__(self):
@@ -51,7 +49,7 @@ class aclient(discord.Client):
             await tree.sync()
             self.synced = True
         print(f"{client.user.name} đã kết nối tới Discord")
-        client.togetherControl = await DiscordTogether(TOKEN)
+        client.togetherControl = await DiscordTogether('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.TrjVEQvDxeq09ELYON6K1dfTnTA')
 
         activity = discord.Game(name='/help để nhận hỗ trợ', type=3)
         await client.change_presence(status=discord.Status.online, activity=activity)
@@ -63,23 +61,25 @@ tree = app_commands.CommandTree(client)
 
 
 #commands list
+
+
 @tree.command(name="help", description = "Xem tất cả các lệnh của bot")
 async def self(interaction: discord.Interaction):
-    myembed = discord.Embed (title = 'Peanutss Bot (v3.0.2)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
+    myembed = discord.Embed (title = 'Peanutss Bot (v3.0)', description = 'Sử dụng `/[lệnh]` để tương tác với bot', color = discord.Color.gold())
     myembed.set_author (name = "Danh Sách Lệnh")
     myembed.add_field (name = "💬 Tương Tác - (4)", value = "`số-may-mắn` `covid19` `covid19vn` `máy-tính-tuổi`", inline=False)
     myembed.add_field (name = "😊 Fun - (15)", value = " `văn-mẫu` `hug` `smile` `kill` `cry` `kiss` `highfive` `pat` `smug` `bonk` `lick` `awoo` `blush` `wave` `slap`", inline=False)
     myembed.add_field (name = "🎁 Media - (7)", value = "`meme` `darkmeme` `girl` `cat` `dog` `food` `waifu` ", inline=False)
-    myembed.add_field (name = "📺 Giải Trí - (4)", value = "`action` `youtube` `cờ-vua` `poker`", inline=False)
+    myembed.add_field (name = "📺 Giải Trí - (2)", value = "`action` `youtube`", inline=False)
     myembed.add_field (name = "🔞 NSFW - (1)", value = "`hentai`", inline=False)
     myembed.add_field (name = "🪙 Tiền Tệ - (1)", value = "`binance`", inline=False)
-    myembed.add_field (name = "⚠️Quản Lí - (4)", value = "`kick` `ban` `unban` `timeout`: Comming Soon", inline=False)
-    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (4)", value = "`dịch` `sắp-tết` `thời-tiết` `chat-with-another-language`", inline=False)
-    myembed.add_field (name = "⚙️ Guilds - (5)", value = "`ping` `help` `server-status` `server-avatar` `avatar`", inline=False)
+    myembed.add_field (name = "⚠️Quản Lí - (3)", value = "`kick` `ban` `unban`: Comming Soon", inline=False)
+    myembed.add_field (name = "💡 Tính Năng Bổ Trợ - (2)", value = "`dịch` `sắp-tết`", inline=False)
+    myembed.add_field (name = "⚙️ Guilds - (4)", value = "`ping` `help` `server-status` `server-avatar`", inline=False)
     myembed.add_field (name = "☎️ Contact - (3):", value = "`contact` `donate` `invite`", inline=False)
     myembed.set_footer(text="Big Update: Chuyển toàn bộ các câu lệnh sang Slash Commands {/}")
     await interaction.response.send_message(embed = myembed, ephemeral = False)
-
+    
 
 #
 @tree.command(name="máy-tính-tuổi-thông-minh", description = "Dùng để tính toán tuổi của bạn")
@@ -103,8 +103,8 @@ async def self(interaction: discord.Interaction):
             memeembed.set_image(url=memes["data"]["children"][random.randint(0, 25)]["data"]["url"])
             memeembed.set_footer(text=f"Meme của mọi nhà")
     await interaction.response.send_message(embed = memeembed, ephemeral = False)
-
-
+    rand_func()
+    await interaction.response.send_message(embed = memeembed, ephemeral = False)
 ######
 @tree.command(name="darkmeme", description = "Gửi cho bạn một darkmeme")
 async def self(interaction: discord.Interaction):
@@ -214,7 +214,7 @@ async def self(interaction: discord.Interaction):
     girlembed.set_footer(text=f"Mỗi bức ảnh, một niềm vui ❤️")
     await interaction.response.send_message(embed = girlembed, ephemeral = False)
 
-#####
+
 @tree.command(name="youtube", description = "Xem Youtube trực tiếp trên Discord")
 async def youtube(interaction: discord.Interaction): 
     try:
@@ -225,7 +225,7 @@ async def youtube(interaction: discord.Interaction):
         await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
 
 ###
-@tree.command(name="cờ-vua", description = "Chơi cờ vua trực tiếp trên Discord")
+@tree.command(name="chess", description = "Chơi cờ vua trực tiếp trên Discord")
 async def youtube(interaction: discord.Interaction): 
     try:
         voice_id = interaction.user.voice.channel.id
@@ -243,7 +243,6 @@ async def youtube(interaction: discord.Interaction):
         await interaction.response.send_message(f'Nhấn vào link để tham gia trò chơi: {link}', ephemeral = False)
     except:
         await interaction.response.send_message('❌| Bạn phải vào kênh voice trước!!', ephemeral = False)
-######
 
 
 @tree.command(name="sắp-tết", description = "Đếm ngược ngày đến Tết Nguyên Đán")
@@ -318,8 +317,9 @@ async def translate(interaction: discord.Interaction, input_lang: str, output_la
         out_lang = 'es'
     if output_lang == "Tiếng Ý":
         out_lang = 'it'
-        
+
     result = GoogleTranslator(source=f'{in_lang}', target=f'{out_lang}').translate(text=noidung)
+   
 
     dich_embed = discord.Embed (title = f'Kết quả dịch từ {input_lang} sang {output_lang}:', color = discord.Color.green())
     dich_embed.add_field (name = 'Văn Bản Gốc:', value = noidung, inline = False)
@@ -370,9 +370,12 @@ async def self(interaction: discord.Interaction):
 #
 @tree.command(name="donate", description = "Ủng hộ Developer một vài ly cafe")
 async def self(interaction: discord.Interaction):
-    donateembed = discord.Embed (title = 'Playerduo Link:', color = discord.Color.orange())
-    donateembed.set_author (name = "Donate ủng hộ Dev ly cà phê tại đây:")
-    donateembed.add_field (name = "https://playerduo.com/peanutss", value = "Cảm ơn bạn rất nhiều <3", inline=False)
+    donateembed = discord.Embed (title = 'Các phương thức ủng hộ:', color = discord.Color.orange())
+    donateembed.set_thumbnail(url='https://cdn.discordapp.com/attachments/854951941472911361/1119843698390347836/IMG_3315.png')
+    donateembed.set_author (name = "Donate ủng hộ Dev ly cà phê tại đây (quét mã QR bên cạnh hoặc link bên dưới):")
+    donateembed.add_field (name = "Playerduo:", value = 'https://playerduo.net/peanutss', inline=False)
+    donateembed.add_field (name = "Paypal: `@andyhnh`", value = 'https://www.paypal.me/andyhnh', inline=False)
+    donateembed.set_footer(text="Cảm ơn bạn rất nhiều <3 / Luv u guys so much <3")
     await interaction.response.send_message(embed = donateembed, ephemeral = False)
 
 #
@@ -402,7 +405,7 @@ async def self(interaction: discord.Interaction):
 async def self(interaction: discord.Interaction):
     inviteembed = discord.Embed (color = discord.Color.green())
     inviteembed.set_author (name = "Link Invite Peanutss Bot")
-    inviteembed.add_field (name = "Link:", value = 'https://discord.com/api/oauth2/authorize?client_id=728462830407254088&permissions=8&scope=applications.commands%20bot', inline=False)
+    inviteembed.add_field (name = "Link:", value = 'https://discord.com/oauth2/authorize?client_id=728462830407254088&permissions=34631477334&scope=bot', inline=False)
     await interaction.response.send_message(embed = inviteembed, ephemeral = False)
 
 #
@@ -502,8 +505,8 @@ async def action_module(interaction: discord.Interaction):
         'Bạn không có một chút văn hoá nào, bạn không có một chút đạo đức nào. Tại sao bạn lại dùng lệnh này?? Bạn không đủ tư cách để nói chuyện với tôi',
         'Xin là xin vĩnh biệt cụ',
         'Thế bạn nói xem vì sao mình phải trả lời bạn - Peanutss Chen',
-        'Chào em, chị là luật sư của army và đã thu thập đủ bằng chứng em xúc phạm army của công ty bên chị. Em vui lòng xóa bài này sau 30 phút. Nếu sau 30 phút mà em vẫn chưa xóa bài thì bên chị sẽ dùng tới pháp luật và em sẽ bị lôi đầu ra Côn Đảo !'
-        'CÁC BẠN NHÂN VIÊN ƠI, CÁC BẠN HỖ TRỢ MÌNH VỚI. CÁC BẠN ƠI CÁC BẠN ĐƯA NHẦM ĐỒ CHO MÌNH CÁC BẠN ƠI. CÁC BẠN NHÂN VIÊN HỖ TRỢ ƠI. CÁC BẠN HỖ TRỢ MÌNH KHÔNG CÁC BẠN ƠI. CÁC BẠN ĐIẾC À CÁC BẠN ƠI HỖ TRỢ MÌNH KHÔNG CÁC BẠN ƠI.'
+        'Chào em, chị là luật sư của army và đã thu thập đủ bằng chứng em xúc phạm army của công ty bên chị. Em vui lòng xóa bài này sau 30 phút. Nếu sau 30 phút mà em vẫn chưa xóa bài thì bên chị sẽ dùng tới pháp luật và em sẽ bị lôi đầu ra Côn Đảo !',
+        'CÁC BẠN NHÂN VIÊN ƠI, CÁC BẠN HỖ TRỢ MÌNH VỚI. CÁC BẠN ƠI CÁC BẠN ĐƯA NHẦM ĐỒ CHO MÌNH CÁC BẠN ƠI. CÁC BẠN NHÂN VIÊN HỖ TRỢ ƠI. CÁC BẠN HỖ TRỢ MÌNH KHÔNG CÁC BẠN ƠI. CÁC BẠN ĐIẾC À CÁC BẠN ƠI HỖ TRỢ MÌNH KHÔNG CÁC BẠN ƠI.',
         'Trong trường hợp anh bị say đắm bởi vẻ đẹp quyến rũ của em (hoặc những vẻ đẹp tương tự của em), anh khẳng định anh không liên hệ bởi bất cứ một cô gái khác nào trong nhóm này, có lẽ trái tim của anh chỉ dành cho em. Anh cũng xin khẳng định anh không hề có thể yêu một cô gái nào khác khi đã yêu em..',
         'Ôi bạn ơi! Bạn sức đề kháng kém là do bạn không chơi đồ đấy bạn ạ, nếu bạn chơi đồ vào thì là đề kháng nó khỏe nó không bao giờ bị ốm đâu bạn ạ, chơi đồ là thuốc bổ mà bạn! Bạn phải nên nhớ nhá, cái viên thuốc bình thường, cái viết thuốc ACID B1 bạn mua có 2 nghìn đc mấy viên đúng k ? Hoặc là 10 nghìn 1 viên, 10 nghìn 1 viên là ACID B1 đấy , đúng không? Thế đây những viên thuốc như viên thuốc kẹo, viên thuốc kim cương, viên thuốc vương liệm này, viên thuốc các kiểu lày thì bạn mua cái đấy vào 500 nghìn 1 viên cơ mà! Chơi cái đấy vào đề kháng nó phải cao hơn chứ bạn! Chơi cái đấy vào nhiều đề kháng mà! Bạn không chơi vào đề kháng bạn kém là phải đấy bạn ạ !',
         'Theo mình thì không nên đăng những bài như thế này. Cái xấu xa, mình phải quên nó đi, cho nó mất dần. K nên nhắc lại. Ng tốt sẽ bị ám ảnh, k tốt cho tinh thần, ng xấu sẽ ghi nhận. Ng k hiểu biết sẽ ghi nhớ. Và nếu nhóm còn đăng nhiều bài như t… thế này thì mình sẽ rời nhóm. Cuộc sống rất ngắn ngủi, tại sao phải để tâm đến điều cần quên đi. Hãy sống tích cực và tươi sáng.'
@@ -558,6 +561,26 @@ async def wiki_autocomplete(
         ]
 
 #####
+@tree.command(name = 'timeout', description = "Timeout/mute member bất kì")
+@commands.has_permissions(moderate_members = True)
+async def timeout(interaction: discord.Interaction, member: discord.Member, days: int, hours: int, minutes: int, seconds: int):
+    if days == None:
+        days = 0
+    if hours == None:
+        hours = 0
+    if minutes == None:
+        minutes = 0
+    if seconds == None:
+        minutes = 0
+    duration = timedelta(days = days, hours = hours, minutes = minutes, seconds = seconds)
+    if member.id == interaction.user.id:
+        await interaction.response.send_message("Bạn không thể tự timeout bản thân!")
+    else: 
+        await member.timeout(timedelta(days = days, hours = hours, minutes = minutes, seconds = seconds))
+        await interaction.response.send_message(f"<@{member}> đã bị timeout {days} ngày, {hours} giờ, {minutes} phút, {seconds} giây")
+
+
+
 @tree.command(name = 'thời-tiết', description = 'Xem tình hình thời tiết ở bất kì thành phố nào trên thế giới')
 async def weather(interaction: discord.Interaction, city_name: str):
     try:
@@ -599,8 +622,8 @@ async def weather(interaction: discord.Interaction, city_name: str):
         await interaction.response.send_message(embed = weatherEmbed)
     except:
         await interaction.response.send_message("Không tìm thấy thành phố bạn yêu cầu", ephemeral = True)
-      
- 
+       
+
 #####
 @tree.command(name = 'avatar', description = 'Xem avatar của mình hoặc của người khác')
 async def avatar(interaction: discord.Interaction, user: discord.Member):
@@ -609,8 +632,8 @@ async def avatar(interaction: discord.Interaction, user: discord.Member):
     avatarEmbed.set_footer(text = f'Lệnh được sử dụng bởi {interaction.user}')
     await interaction.response.send_message(embed = avatarEmbed)
 
-    
-#####
+
+#######
 @tree.command(name = 'chat-with-another-language', description = 'Tự động chuyển đổi tin nhắn của bạn sang ngôn ngữ khác mà bạn muốn')
 async def cwal(interaction: discord.Interaction, language : str, text : str):
 
@@ -665,7 +688,195 @@ async def cwal_autocomplete(
         for lang123 in language if current.lower() in lang123.lower()
         ]
 
-######
+
+
+####
+
+nest_asyncio.apply()
+@tree.command(name="kéo-búa-bao", description = "Chơi trò chơi Kéo Búa Bao")
+async def keobuabao(interaction: discord.Interaction):
+    
+    
+    async def keo_bua_bao(interaction, playerchoice):
+        playerchoice = None
+        computerchoice = random.choice(["Kéo", "Búa", "Bao"])
+        
+        if computerchoice == playerchoice:
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=tieEmbed, view = KBBButton())
+
+        elif computerchoice == "Kéo" and playerchoice == "Búa":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=winEmbed, view = KBBButton())
+        elif computerchoice == "Búa" and playerchoice == "Bao":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=winEmbed, view = KBBButton())
+        elif computerchoice == "Bao" and playerchoice == "Kéo":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=winEmbed, view = KBBButton())
+
+        elif computerchoice == "Kéo" and playerchoice == "Bao":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=loseEmbed, view = KBBButton())
+        elif computerchoice == "Búa" and playerchoice == "Kéo":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=loseEmbed, view = KBBButton())
+        elif computerchoice == "Bao" and playerchoice == "Búa":
+            await interaction.response.send_message("<a:ggload:1063834419510661200>")
+            await interaction.edit_original_response(content=None, embed=loseEmbed, view = KBBButton())
+        else:
+            print("Lỗi")
+
+        return playerchoice, computerchoice
+    playerchoice = await keo_bua_bao()
+    computerchoice = await keo_bua_bao()
+    print(playerchoice, computerchoice)
+       # print("Người: ", playerchoice, " - " "Máy: ", computerchoice)
+        
+
+    class KBBButton(discord.ui.View):
+        def __init__(self):
+            super().__init__(timeout=None)
+
+        @discord.ui.button(label='Kéo ✌️', style=discord.ButtonStyle.green)
+        async def keo(self, interaction: discord.Integration, button: discord.ui.Button):
+            playerchoice = "Kéo"
+            computerchoice = random.choice(["Kéo", "Búa", "Bao"])
+            if computerchoice == playerchoice:
+                await interaction.response.edit_message(embed = tieEmbed, view = KBBButton())
+            elif computerchoice == "Búa":
+                await interaction.response.edit_message(embed = loseEmbed, view = KBBButton())
+            elif computerchoice == "Bao":
+                await interaction.response.edit_message(embed = winEmbed, view = KBBButton())
+
+    
+        @discord.ui.button(label='Búa 👊', style=discord.ButtonStyle.blurple)
+        async def bua(self, interaction: discord.Integration, button: discord.ui.Button):
+            playerchoice = "Búa"
+            computerchoice = random.choice(["Kéo", "Búa", "Bao"])
+            if computerchoice == playerchoice:
+                await interaction.response.edit_message(embed = tieEmbed, view = KBBButton())
+            elif computerchoice == "Kéo":
+                await interaction.response.edit_message(embed = winEmbed, view = KBBButton())
+            elif computerchoice == "Bao":
+                await interaction.response.edit_message(embed = loseEmbed, view = KBBButton())
+
+
+        @discord.ui.button(label='Bao ✋', style=discord.ButtonStyle.gray)
+        async def bao(self, interaction: discord.Integration, button: discord.ui.Button):
+            playerchoice = "Bao"
+            computerchoice = random.choice(["Kéo", "Búa", "Bao"])
+            if computerchoice == playerchoice:
+                await interaction.response.edit_message(embed = tieEmbed, view = KBBButton())
+            elif computerchoice == "Búa":
+                await interaction.response.edit_message(embed = winEmbed, view = KBBButton())
+            elif computerchoice == "Kéo":
+                await interaction.response.edit_message(embed = loseEmbed, view = KBBButton())
+
+
+        @discord.ui.button(label='Thoát ❌', style=discord.ButtonStyle.red)
+        async def thoat(self, interaction: discord.Integration, button: discord.ui.Button):
+            await interaction.delete_original_response()
+        
+        
+
+    gameEmbed = discord.Embed(title = 'Chào Mừng Bạn Đến Với Trò Chơi Kéo Búa Bao', description = 'Vui lòng lựa chọn bằng cách bấm các nút bên dưới!', color = discord.Color.gold())
+    gameEmbed.set_footer(text = f'')
+        
+    loseEmbed = discord.Embed(title = 'Kết Quả: THUA', description = f'Máy chọn: {computerchoice}\n Bạn chọn: {playerchoice}', color = discord.Color.red())
+    loseEmbed.set_footer(text = f'{interaction.user} đã THUA cuộc!')
+
+    winEmbed = discord.Embed(title = 'Kết Quả: THẮNG', description = f'Máy chọn: {computerchoice}\n Bạn chọn: {playerchoice}', color = discord.Color.green())
+    winEmbed.set_footer(text = f'{interaction.user} đã THẮNG cuộc!')
+
+    tieEmbed = discord.Embed(title = 'Kết Quả: HÒA', description = f'Máy chọn: {computerchoice}\n Bạn chọn: {playerchoice}', color = discord.Color.blue())
+    tieEmbed.set_footer(text = f'{interaction.user} đã cầm HÒA với bot!!')
+
+    await interaction.response.send_message(embed = gameEmbed, view = KBBButton()) 
+
+
+
+
+####
+@tree.command(name="traloi", description = "Sử dụng Rep")
+async def self(interaction: discord.Interaction, ch: str):
+
+    await interaction.response.send_message("this text will be edited after 4 scds")
+    await asyncio.sleep(1)
+    
+    await interaction.edit_original_response(content="this text will be edited after 3 scds")
+    await asyncio.sleep(1)
+    
+    await interaction.edit_original_response(content="this text will be edited after 2 scds")
+    await asyncio.sleep(1)
+    
+    await interaction.edit_original_response(content="this text will be edited after 1 scds")
+    await asyncio.sleep(1)
+    #await interaction.response.defer(ephemeral = False)
+
+    #await interaction.followup.send("nối")
+    await interaction.edit_original_response(content=f'edited')
+    await asyncio.sleep(2)
+    await interaction.delete_original_response()
+    
+
+
+
+###########
+@tree.command(name="join", description = "Gọi bot vào phòng voice")
+async def self(interaction: discord.Interaction):
+    await interaction.user.voice.channel.connect()
+    await interaction.response.send_message("Đã kết nối!")
+
+
+@tree.command(name="speak", description = "Dùng để nói trong voicechat khi bạn không có mic")
+async def self(interaction: discord.Interaction, van_ban: str):
+    if interaction.user.voice != None:
+        try:
+            voicechat = await interaction.user.voice.channel.connect()
+        except:
+            #voicechat = discord.voice_client.VoiceClient
+
+
+            sound = gTTS(text=van_ban, lang='vi', slow=False)
+            sound.save("tts.mp3")   
+            
+            # if voicechat.is_playing():
+            #     voicechat.stop()
+
+            source = await discord.FFmpegOpusAudio.from_probe("tts.mp3", method='fallback', executable="C:\\Users\\anpho\\OneDrive\\Desktop\\peabot-main\\ffmpeg\\binffmpeg.exe")
+            await interaction.response.send_message(f"**{interaction.user}:** {van_ban}")
+            voicechat.play(source)
+
+    else: 
+        source = await discord.FFmpegOpusAudio.from_probe("tts.mp3", method='fallback', executable="C:\\Users\\anpho\\OneDrive\\Desktop\\peabot-main\\ffmpeg\\binffmpeg.exe")
+        await interaction.response.send_message(f"**{interaction.user}:** {van_ban}")
+        voicechat.play(source)
+
+    # else:
+    #      await interaction.response.send_message("Bạn phải vào kênh voice chat mới sử dụng được chức năng này, hãy sử dụng /join")
+        
+    
+@tree.command(name="stop", description = "Dừng nhạc")
+async def self(interaction: discord.Interaction):
+    await interaction.user.voice.channel.disconnect()
+    await interaction.response.send_message("Đã dừng nhạc!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #@tree.command(name="kick", description = "Kick một member nào đó",)
 ##@commands.has_permissions(kick_members = True, administrator = True)
@@ -705,4 +916,4 @@ async def cwal_autocomplete(
 
 
 #run
-client.run(TOKEN) 
+client.run('NzI4NDYyODMwNDA3MjU0MDg4.Xv6v4A.TrjVEQvDxeq09ELYON6K1dfTnTA') 
